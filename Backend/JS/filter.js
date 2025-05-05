@@ -3,6 +3,7 @@
  */
 
 // Demo-Daten - in der Praxis würden diese von einer API kommen
+// Demo-Daten mit mehr Attributen
 const demoVehicles = [
     {
         id: 1,
@@ -12,29 +13,79 @@ const demoVehicles = [
         baujahr: 2019,
         kilometer: 45000,
         leistung: 190,
+        getriebe: 'automatik',
+        kraftstoff: 'diesel',
         bild: '../images/auto1.jpg'
     },
-    // Weitere Demo-Fahrzeuge...
+    {
+        id: 2,
+        marke: 'BMW',
+        modell: '320i',
+        preis: 32500,
+        baujahr: 2020,
+        kilometer: 12000,
+        leistung: 184,
+        getriebe: 'manuell',
+        kraftstoff: 'benzin',
+        bild: '../images/auto2.jpg'
+    },
+    // Weitere Fahrzeuge...
 ];
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Preis-Slider Update
-    const preisSlider = document.getElementById('preis');
-    const preisValue = document.getElementById('preisValue');
-    
-    preisSlider.addEventListener('input', function() {
-        preisValue.textContent = new Intl.NumberFormat('de-DE').format(this.value);
+function applyFilters() {
+    const marke = document.getElementById('marke').value;
+    const maxPreis = document.getElementById('preis').value;
+    const kilometer = document.getElementById('kilometer').value;
+    const getriebe = document.querySelector('input[name="getriebe"]:checked').value;
+    const kraftstoffe = Array.from(document.querySelectorAll('input[name="kraftstoff"]:checked')).map(el => el.value);
+    const leistung = document.getElementById('leistung').value;
+    const baujahr = document.getElementById('baujahr').value;
+
+    const filtered = demoVehicles.filter(vehicle => {
+        // Markenfilter
+        if (marke && vehicle.marke.toLowerCase() !== marke) return false;
+        
+        // Preisfilter
+        if (vehicle.preis > maxPreis) return false;
+        
+        // Kilometerfilter
+        if (kilometer) {
+            const [min, max] = kilometer.split('-').map(Number);
+            if (vehicle.kilometer < min || vehicle.kilometer > max) return false;
+        }
+        
+        // Getriebefilter
+        if (getriebe && vehicle.getriebe !== getriebe) return false;
+        
+        // Kraftstofffilter
+        if (kraftstoffe.length > 0 && !kraftstoffe.includes(vehicle.kraftstoff)) return false;
+        
+        // Leistungsfilter
+        if (leistung) {
+            const [min, max] = leistung.split('-').map(Number);
+            if (vehicle.leistung < min || (max && vehicle.leistung > max)) return false;
+        }
+        
+        // Baujahrfilter
+        if (baujahr && vehicle.baujahr < baujahr) return false;
+        
+        return true;
     });
     
-    // Filter-Formular
-    document.getElementById('filterForm').addEventListener('submit', function(e) {
-        e.preventDefault();
+    displayVehicles(filtered);
+}
+
+// Event-Listener für Formular-Reset
+document.querySelector('button[type="reset"]').addEventListener('click', function() {
+    setTimeout(() => {
+        document.getElementById('preisValue').textContent = '25.000';
         applyFilters();
-    });
+    }, 0);
+});
     
     // Initiale Anzeige
     displayVehicles(demoVehicles);
-});
+;
 
 function applyFilters() {
     const marke = document.getElementById('marke').value;

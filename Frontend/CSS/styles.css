@@ -52,3 +52,64 @@ main {
   padding: 2rem;
   min-height: 80vh;
 }
+/* Navigation Styles */
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-nav a.active {
+  background-color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 768px) {
+  header {
+      flex-direction: column;
+      padding: 1rem;
+  }
+  
+  .main-nav ul {
+      margin-top: 1rem;
+      justify-content: center;
+  }
+}
+/* Verbesserte Filter-Sidebar */
+.filter-sidebar {
+  position: sticky;
+  top: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Scrollbar für Filter */
+.filter-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.filter-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.filter-sidebar::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}

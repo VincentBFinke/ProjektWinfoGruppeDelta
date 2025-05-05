@@ -1,7 +1,7 @@
 /* Spezifische Stile für die Filter-Seite */
 .filter-container {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .filter-sidebar {
@@ -47,4 +47,39 @@
 
 .vehicle-card:hover {
   transform: translateY(-5px);
+}
+/* Erweiterte Filter-Stile */
+.filter-group {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.radio-group, .checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-group label, .checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  margin: 0;
+}
+
+.btn-reset {
+  background-color: var(--dark-color);
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.btn-reset:hover {
+  background-color: #14213d;
 }

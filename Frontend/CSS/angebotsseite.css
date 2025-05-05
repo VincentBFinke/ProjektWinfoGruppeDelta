@@ -1,4 +1,9 @@
 /* Stile für die Angebotsseite */
+/* Anpassung für besseren Abstand unter der Nav */
+.angebote-container {
+    margin-top: 1.5rem;
+}
+
 .angebote-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
