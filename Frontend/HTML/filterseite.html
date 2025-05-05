@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpro - Fahrzeuge filtern</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <link rel="stylesheet" href="../CSS/filter.css">
+    <!-- Spezifisches CSS für Filter-Seite -->
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="Carpro Logo" class="logo">
+        </div>
+        <nav>
+            <a href="login.html">Logout</a>
+        </nav>
+    </header>
+
+    <main class="filter-container">
+        <aside class="filter-sidebar">
+            <h2>Filteroptionen</h2>
+            <form id="filterForm">
+                <!-- Markenfilter -->
+                <div class="filter-group">
+                    <label for="marke">Marke</label>
+                    <select id="marke">
+                        <option value="">Alle Marken</option>
+                        <option value="audi">Audi</option>
+                        <option value="bmw">BMW</option>
+                        <!-- Weitere Optionen -->
+                    </select>
+                </div>
+                
+                <!-- Preisbereich -->
+                <div class="filter-group">
+                    <label for="preis">Preis bis (€)</label>
+                    <input type="range" id="preis" min="5000" max="50000" step="1000">
+                    <span id="preisValue">25.000</span>
+                </div>
+                
+                <!-- Weitere Filter -->
+                <button type="submit" class="btn-filter">Filter anwenden</button>
+            </form>
+        </aside>
+
+        <section class="results-container">
+            <h2>Verfügbare Fahrzeuge</h2>
+            <div id="resultsGrid" class="results-grid">
+                <!-- Ergebnisse werden via JS eingefügt -->
+            </div>
+        </section>
+    </main>
+
+    <script src="../../Backend/JS/filter.js"></script>
+    <!-- JavaScript für Filterfunktionen -->
+</body>
+</html>

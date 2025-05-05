@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carpro - Login</title>
+    <link rel="stylesheet" href="../CSS/styles.css">
+    <!-- Haupt-CSS für allgemeine Stile -->
+</head>
+<body class="login-page">
+    <header>
+        <div class="logo-container">
+            <img src="../images/logo.png" alt="Carpro Logo" class="logo">
+        </div>
+    </header>
+    
+    <main class="login-container">
+        <h1>Willkommen bei Carpro</h1>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Benutzername</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn-login">Anmelden</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Carpro GmbH</p>
+    </footer>
+
+    <script src="../../Backend/JS/auth.js"></script>
+    <!-- JavaScript für Login-Funktionalität -->
+</body>
+</html>
