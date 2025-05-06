@@ -1,33 +1,37 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpro - Aktuelle Angebote</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
-    <link rel="stylesheet" href="../CSS/angebotsseite.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Carpro - Top-Angebote</title>
+    <link rel="stylesheet" href="../CSS/angebotsseite.css" />
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="../images/logo.png" alt="Carpro Logo" class="logo">
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="filterseite.html">Suche</a></li>
-                <li><a href="angebotsseite.html" class="active">Top-Angebote</a></li>
-                <li><a href="login.html">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
+<div class="main-layout">
+    <aside class="sidebar">
+        <img src="../images/logo.png" alt="Carpro Logo" class="logo" />
+        <label for="marke">Marke:</label>
+        <select id="marke"><option>Alle</option></select>
 
-    <main class="angebote-container">
-        <h1>Unsere Top-Angebote</h1>
-        <div class="angebote-grid" id="angeboteGrid">
-            <!-- Angebote werden via JS geladen -->
-        </div>
+        <label for="alter">Alter:</label>
+        <select id="alter"><option>Alle</option></select>
+
+        <label for="typ">Fahrzeugtyp:</label>
+        <select id="typ"><option>Alle</option></select>
+
+        <label for="km">Kilometerstand:</label>
+        <select id="km"><option>Alle</option></select>
+
+        <label for="ps">Leistung in PS:</label>
+        <select id="ps"><option>Alle</option></select>
+    </aside>
+
+    <main class="angebote-bereich">
+        <h1>GEBRAUCHTWAGENVERKAUF</h1>
+        <div class="angebote-grid" id="angeboteGrid"></div>
     </main>
+</div>
 
-    <script src="../../Backend/JS/angebote.js"></script>
+<script src="../../Backend/JS/angebote.js"></script>
 </body>
 </html>
