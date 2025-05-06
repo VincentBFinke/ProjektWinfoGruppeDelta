@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carpro - Fahrzeugdetails</title>
-    <link rel="stylesheet" href="../CSS/styles.css">
-    <link rel="stylesheet" href="../CSS/einzelangebote.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Carpro – Fahrzeugdetails</title>
+    <link rel="stylesheet" href="../CSS/einzelangebot.css" />
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <img src="../images/logo.png" alt="Carpro Logo" class="logo">
-        </div>
-        <nav>
-            <a href="filterseite.html">Zurück zur Suche</a>
-        </nav>
-    </header>
 
-    <main class="detail-container">
-        <div class="detail-images">
-            <img id="mainImage" src="../images/auto1.jpg" alt="Fahrzeug Hauptbild">
-            <div class="thumbnail-container">
-                <!-- Thumbnails werden via JS geladen -->
-            </div>
-        </div>
-        
-        <div class="detail-info">
-            <h1 id="fahrzeugTitel">BMW 3er Limousine</h1>
-            <div class="detail-specs">
-                <!-- Spezifikationen werden via JS geladen -->
-            </div>
-            <button id="kontaktBtn" class="btn-kontakt">Kontakt aufnehmen</button>
-        </div>
-    </main>
+<header>
+    <div class="logo-container">
+        <img src="../images/logo.png" alt="Carpro Logo" class="logo">
+    </div>
+    <nav>
+        <a href="angebotsseite.html">← Zurück zu den Angeboten</a>
+    </nav>
+</header>
 
-    <script src="../../Backend/JS/einzelangebot.js"></script>
+<main class="detail-layout">
+    <section class="image-section">
+        <img id="mainImage" src="../images/auto1.jpg" alt="Hauptbild">
+        <div class="thumbnail-container">
+            <img class="thumbnail active" src="../images/auto1_thumb1.jpg" alt="" data-src="../images/auto1.jpg">
+            <img class="thumbnail" src="../images/auto1_thumb2.jpg" alt="" data-src="../images/auto1_alt.jpg">
+        </div>
+    </section>
+
+    <section class="info-section">
+        <h1>BMW 3er</h1>
+        <p class="price">22.900 €</p>
+        <ul class="details">
+            <li>Baujahr: 2019</li>
+            <li>Kilometerstand: 54.000 km</li>
+            <li>Leistung: 150 PS</li>
+            <li>Kraftstoff: Benzin</li>
+            <li>Getriebe: Automatik</li>
+        </ul>
+        <button class="btn-kontakt">Kontakt aufnehmen</button>
+    </section>
+</main>
+
+<script src="../JS/einzelangebot.js"></script>
 </body>
 </html>
