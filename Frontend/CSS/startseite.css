@@ -1,98 +1,239 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #000;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
-.header {
-  background-color: #111;
-  color: white;
-  padding: 1rem 2rem;
+/* HEADER */
+.main-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 100px;
+  padding: 15px 40px;
+  background-color: #d93030;
+  color: #fff;
+}
+
+.logo-center {
+  flex-shrink: 0;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.logo img {
   height: 40px;
 }
 
-.nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 1rem;
-  font-weight: bold;
+.nav-left,
+.nav-right {
+  display: flex;
+  gap: 16px;
 }
 
-.hero-image img {
+.nav-left a,
+.nav-right a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(2px);
+  font-size: 0.95rem;
+}
+
+.nav-left a:hover,
+.nav-right a:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.nav-left a.active,
+.nav-right a.active {
+  background-color: #ffffff;
+  color: #d93030;
+  font-weight: 600;
+}
+
+.nav-right i {
+  margin-right: 6px;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+}
+
+.hero-image {
   width: 100%;
-  height: auto;
-  display: block;
-  max-height: 600px;
+  max-height: 800px;
   object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-.intro {
-  padding: 3rem 2rem;
-  text-align: center;
-}
-
-.cta-button {
-  background-color: #111;
+.hero-text {
+  position: absolute;
+  top: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 2rem;
   color: white;
-  padding: 0.75rem 2rem;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  white-space: nowrap;
+}
+
+/* Scroll-Pfeil */
+.scroll-arrow {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  animation: bounce 2s infinite;
+}
+
+.scroll-arrow svg {
+  width: 36px;
+  height: 36px;
+  stroke: white;
+  transition: stroke 0.3s ease;
+}
+
+.scroll-arrow:hover svg {
+  stroke: #ccc;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+/* INTRO */
+#intro {
+  margin-top: -30px;
+  padding: 80px 20px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+#intro h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+#intro h2 {
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 30px auto 10px;
+  max-width: 720px;
+  line-height: 1.6;
+}
+
+#intro p {
+  font-size: 1rem;
+  max-width: 720px;
+  margin: 10px auto;
+  line-height: 1.6;
+  text-align: justify;
+  text-align-last: center;
+}
+
+/* CTA-BUTTON */
+.cta-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #d93030;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
-  border-radius: 6px;
-  margin-top: 1.5rem;
-  display: inline-block;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
 
+.cta-button:hover {
+  background-color: #b22222;
+}
+
+/* MARKENBEREICH */
 .marken-section {
-  background-color: #f8f8f8;
-  padding: 3rem 2rem;
+  background-color: #e5e5e5;
+  padding: 60px 30px;
   text-align: center;
+}
+
+.marken-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 40px;
 }
 
 .marken-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  justify-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* MARKEN-KARTE */
+.marken-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .marken-card {
-  background: #fff;
-  padding: 1.5rem;
+  background-color: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-  text-align: center;
-  transition: transform 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .marken-card:hover {
-  transform: translateY(-5px);
+  background-color: #d93030;
+  color: #fff;
+  cursor: pointer;
+}
+
+.marken-card:hover h3,
+.marken-card:hover p {
+  color: #fff;
 }
 
 .marken-card img {
-  width: 80px;
-  height: auto;
-  margin-bottom: 1rem;
+  max-width: 80px;
+  max-height: 50px;
+  margin-bottom: 12px;
+  object-fit: contain;
 }
 
 .marken-card h3 {
-  margin: 0.5rem 0;
+  margin: 10px 0 5px;
+  font-size: 1.1rem;
 }
 
 .marken-card p {
-  font-size: 0.9rem;
-  color: #555;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markenübersicht</title>
+  <link rel="stylesheet" href="../CSS/startseite.css" />
+</head>
+<body>
+  <header class="main-header">
+    <h1 id="marken-title">Fahrzeuge</h1>
+  </header>
+
+  <main style="padding: 40px; text-align: center;">
+    <p id="marken-info">Fahrzeuge der Marke werden geladen …</p>
+    <!-- Hier könntest du später deine Fahrzeuge dynamisch einfügen -->
+  </main>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const marke = urlParams.get("name");
+
+    if (marke) {
+      document.getElementById("marken-title").textContent = `Fahrzeuge von ${marke}`;
+      document.getElementById("marken-info").textContent = `Hier finden Sie alle verfügbaren Modelle von ${marke}.`;
+    }
+  </script>
+</body>
+</html>

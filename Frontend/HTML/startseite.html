@@ -3,40 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Startseite – CARPRO</title>
+  <title>CARPRO Autovermietung</title>
   <link rel="stylesheet" href="../CSS/startseite.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-  <header class="header">
-    <div class="logo">
-      <img src="../images/logo.png" alt="CARPRO Logo" />
-      <span>CARPRO Autovermietung</span>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <nav class="nav-left">
+      <a href="#" class="active">Startseite</a>
+      <a href="#">Fahrzeugbestand</a>
+    </nav>
+
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
     </div>
-    <nav class="nav">
-      <a href="#">Anmelden</a> | <a href="#">Registrieren</a>
+
+    <nav class="nav-right">
+      <a href="#">Services</a>
+      <a href="#">Kontakt</a>
+      <a href="#"><i class="fas fa-user"></i> Login</a>
     </nav>
   </header>
 
-  <!-- Hero-Bild unter dem Header -->
-  <section class="hero-image">
-    <img src="../images/startseite.png" alt="Startseitenbild" />
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">CARPRO Autovermietung</div>
+    <img src="../images/startseite.png" alt="Hero Fahrzeug" class="hero-image" />
+    <a href="#intro" class="scroll-arrow">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </a>
   </section>
 
+  <!-- INTRO -->
   <main>
     <section id="intro" class="intro">
       <h1>CARPRO Autovermietung</h1>
-      <p>Als moderne Autovermietung bieten wir Ihnen nicht nur flexible Mobilitätslösungen, sondern auch die Möglichkeit, unsere gepflegten und regelmäßig gewarteten Gebrauchtfahrzeuge zu attraktiven Konditionen zu erwerben.</p>
+      <p>
+        Als moderne Autovermietung bieten wir Ihnen nicht nur flexible Mobilitätslösungen,
+        sondern auch die Möglichkeit, unsere gepflegten und regelmäßig gewarteten Gebrauchtfahrzeuge
+        zu attraktiven Konditionen zu erwerben.
+      </p>
       <h2>Top gewartete Fahrzeuge – geprüft, zuverlässig und sofort verfügbar!</h2>
-      <p>In unserem ständig wechselnden Portfolio finden Sie Limousinen, SUVs, Kombis, Sportwagen und vieles mehr!</p>
+      <p>
+        In unserem ständig wechselnden Portfolio finden Sie Limousinen, SUVs, Kombis,
+        Sportwagen und vieles mehr!
+      </p>
       <a href="#" class="cta-button">Zu den Fahrzeugen</a>
     </section>
 
+    <!-- MARKEN -->
     <section id="marken" class="marken-section">
       <h2>Unsere Marken</h2>
       <div id="marken-container" class="marken-grid"></div>
     </section>
   </main>
 
+  <!-- JS -->
   <script src="../../Backend/JS/startseite.js"></script>
 </body>
 </html>
