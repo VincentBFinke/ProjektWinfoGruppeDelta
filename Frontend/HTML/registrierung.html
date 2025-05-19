@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carpro - Registrierung</title>
     <link rel="stylesheet" href="../CSS/styles.css">
-    <!-- Haupt-CSS für allgemeine Stile -->
 </head>
 <body class="login-page">
     <header>
@@ -14,27 +13,44 @@
         </div>
     </header>
     
-    <main class="login-container">
-        <h1>Registrieren bei Carpro</h1>
-        <form id="registerForm">
-            <div class="input-group">
-                <label for="username">Benutzername</label>
-                <input type="text" id="username" required>
-            </div>
-            <div class="input-group">
-                <label for="email">E-Mail-Adresse</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Passwort</label>
-                <input type="password" id="password" required>
-            </div>
-            <div class="input-group">
-                <label for="confirmPassword">Passwort bestätigen</label>
-                <input type="password" id="confirmPassword" required>
-            </div>
-            <button type="submit" class="btn-login">Registrieren</button>
-        </form>
+    <main class="login-wrapper">
+        <div class="login-card">
+            <h1>Registrieren bei Carpro</h1>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="firstName">Vorname</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastName">Nachname</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">E-Mail-Adresse</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Passwort</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Passwort bestätigen</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="input-group">
+                    <label for="customerType">Kundentyp</label>
+                    <select id="customerType" required>
+                        <option value="">Bitte wählen</option>
+                        <option value="privat">Privatkunde</option>
+                        <option value="firma">Firmenkunde</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-login">Registrieren</button>
+                <p class="register-hint">
+                    Schon registriert? <a href="./login.html">Jetzt anmelden</a>
+                </p>
+            </form>
+        </div>
     </main>
 
     <footer>
@@ -42,6 +58,5 @@
     </footer>
 
     <script src="../../Backend/JS/register.js"></script>
-    <!-- JavaScript für Registrierungs-Funktionalität -->
 </body>
 </html>

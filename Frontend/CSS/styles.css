@@ -1,115 +1,208 @@
-/* Globale Stileinstellungen */
-:root {
-  --primary-color: #e63946; /* Carpro Rot */
-  --secondary-color: #f1faee; /* Hellgrau */
-  --dark-color: #d23a3a; /* Dunkelblau/Schwarz */
-  --light-color: #a8dadc; /* Akzentfarbe */
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: var(--secondary-color);
-  color: #333;
-}
-
-header {
-  background-color: var(--dark-color);
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  height: 50px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 1rem;
-}
-
-/* Allgemeine Button-Stile */
-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #c1121f;
-}
-
-/* Container für Hauptinhalt */
-main {
-  padding: 2rem;
-  min-height: 80vh;
-}
-/* Navigation Styles */
-.main-nav ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  gap: 1.5rem;
-}
-
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-}
-
-.main-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.main-nav a.active {
-  background-color: var(--primary-color);
-  font-weight: bold;
-}
-
-/* Responsive Anpassungen */
-@media (max-width: 768px) {
+/* ===============================
+   Globale Stileinstellungen
+   =============================== */
+   :root {
+    --primary-color: #e63946; /* Carpro Rot */
+    --secondary-color: #f1faee; /* Hellgrau */
+    --dark-color: #d23a3a; /* Dunkelrot/Dunkel */
+    --light-color: #a8dadc; /* Akzentfarbe */
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: #333;
+  }
+  
+  /* ===============================
+     Header & Navigation
+     =============================== */
   header {
-      flex-direction: column;
-      padding: 1rem;
+    background-color: var(--dark-color);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 50px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
   }
   
   .main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.5rem;
+  }
+  
+  .main-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  
+  .main-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .main-nav a.active {
+    background-color: var(--primary-color);
+    font-weight: bold;
+  }
+  
+  /* ===============================
+     Buttons
+     =============================== */
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #c1121f;
+  }
+  
+  .btn-login {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-login:hover {
+    background-color: #c1121f;
+  }
+  
+  /* ===============================
+     Formulare & Eingabefelder
+     =============================== */
+  .input-group input,
+  .input-group select {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-top: 0.25rem;
+  }
+  
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* ===============================
+     Hauptinhalte
+     =============================== */
+  main {
+    padding: 2rem;
+    min-height: 80vh;
+  }
+  
+  /* ===============================
+     Login-Seite – Card-Stil
+     =============================== */
+  .login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: var(--secondary-color);
+  }
+  
+  .login-card {
+    background-color: white;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .login-card h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--dark-color);
+  }
+  
+  /* ===============================
+     Filter-Sidebar & Scrollbar
+     =============================== */
+  .filter-sidebar {
+    position: sticky;
+    top: 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+  
+  .filter-sidebar::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .filter-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .filter-sidebar::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+  }
+
+  .register-hint {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .register-hint a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .register-hint a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  /* ===============================
+     Responsive Design
+     =============================== */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      padding: 1rem;
+    }
+  
+    .main-nav ul {
       margin-top: 1rem;
       justify-content: center;
+    }
   }
-}
-/* Verbesserte Filter-Sidebar */
-.filter-sidebar {
-  position: sticky;
-  top: 20px;
-  max-height: 90vh;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-/* Scrollbar für Filter */
-.filter-sidebar::-webkit-scrollbar {
-  width: 5px;
-}
-
-.filter-sidebar::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.filter-sidebar::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 10px;
-}
+  
