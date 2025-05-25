@@ -3,27 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Markenübersicht</title>
-  <link rel="stylesheet" href="../CSS/startseite.css" />
+  <title>Fahrzeuge von Marke</title>
+  <link rel="stylesheet" href="../CSS/marke.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- HEADER aus Startseite -->
   <header class="main-header">
-    <h1 id="marken-title">Fahrzeuge</h1>
+    <nav class="nav-left">
+      <a href="startseite.html">Startseite</a>
+      <a href="#" class="active">Fahrzeugbestand</a>
+    </nav>
+
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+
+    <nav class="nav-right">
+      <a href="#">Services</a>
+      <a href="#">Kontakt</a>
+      <a href="#"><i class="fas fa-user"></i> Login</a>
+    </nav>
   </header>
 
-  <main style="padding: 40px; text-align: center;">
-    <p id="marken-info">Fahrzeuge der Marke werden geladen …</p>
-    <!-- Hier könntest du später deine Fahrzeuge dynamisch einfügen -->
+  <!-- FAHRZEUG-ANZEIGE -->
+  <main style="background-color: #e5e5e5; min-height: 100vh;">
+    <h1 id="marken-title" style="text-align: center; padding-top: 40px;">Fahrzeuge</h1>
+    <div id="fahrzeug-container" class="fahrzeug-grid">
+      <!-- Fahrzeugkarten werden hier dynamisch eingefügt -->
+    </div>
   </main>
 
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const marke = urlParams.get("name");
 
-    if (marke) {
-      document.getElementById("marken-title").textContent = `Fahrzeuge von ${marke}`;
-      document.getElementById("marken-info").textContent = `Hier finden Sie alle verfügbaren Modelle von ${marke}.`;
-    }
+    document.getElementById("marken-title").textContent = `Fahrzeuge von ${marke}`;
+
+    fetch('http://localhost:3000/api/fahrzeuge?marke=' + encodeURIComponent(marke))
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('fahrzeug-container');
+
+        if (data.length === 0) {
+          container.innerHTML = "<p>Keine Fahrzeuge gefunden.</p>";
+          return;
+        }
+
+        data.forEach(auto => {
+          const card = document.createElement('div');
+          card.className = 'fahrzeug-card';
+          card.innerHTML = `
+            <img src="http://localhost:3000${auto.bild_url}" alt="${auto.modell}" />
+            <div class="fahrzeug-info">
+              <h3>${auto.hersteller} ${auto.modell}</h3>
+              <div class="info-grid">
+                <span><strong>Kraftstoff:</strong> ${auto.kraftstoff}</span>
+                <span><strong>Erstzulassung:</strong> ${auto.erstzulassung}</span>
+                <span><strong>Kilometer:</strong> ${auto.kilometerstand.toLocaleString()} km</span>
+                <span><strong>Getriebe:</strong> ${auto.getriebe}</span>
+                <span><strong>Leistung:</strong> ${auto.leistung} PS</span>
+                <span><strong>Karosserie:</strong> ${auto.karosserie}</span>
+              </div>
+              <div class="fahrzeug-preis">${auto.preis.toLocaleString()} €</div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Fehler beim Abruf:', err);
+        document.getElementById('fahrzeug-container').innerHTML = "<p>Fehler beim Laden der Fahrzeuge.</p>";
+      });
   </script>
 </body>
 </html>

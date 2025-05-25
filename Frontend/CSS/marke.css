@@ -1,0 +1,141 @@
+/* Grundlayout */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #e5e5e5;
+    color: #1a1a1a;
+  }
+  
+  /* HEADER */
+  .main-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    padding: 15px 40px;
+    background-color: #d93030;
+    color: #fff;
+  }
+  
+  .logo-center {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    height: 40px;
+    display: block;
+  }
+  
+  .nav-left,
+  .nav-right {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .nav-left a,
+  .nav-right a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(2px);
+    font-size: 0.95rem;
+  }
+  
+  .nav-left a:hover,
+  .nav-right a:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .nav-left a.active,
+  .nav-right a.active {
+    background-color: #ffffff;
+    color: #d93030;
+    font-weight: 600;
+  }
+  
+  .nav-right i {
+    margin-right: 6px;
+  }
+  
+  /* Titel */
+  #marken-title {
+    text-align: center;
+    padding-top: 40px;
+    font-size: 1.8rem;
+  }
+  
+  /* Fahrzeugübersicht */
+  .fahrzeug-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 40px;
+    justify-items: center;
+  }
+  
+  @media (min-width: 600px) {
+    .fahrzeug-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .fahrzeug-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .fahrzeug-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    width: 100%;
+    max-width: 350px;
+  }
+  
+  .fahrzeug-card:hover {
+    transform: scale(1.02);
+  }
+  
+  .fahrzeug-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .fahrzeug-info {
+    padding: 20px;
+    color: #1a1a1a;
+  }
+  
+  .fahrzeug-info h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+    font-size: 0.95rem;
+    color: #444;
+  }
+  
+  .fahrzeug-preis {
+    margin-top: 14px;
+    font-size: 1.3rem;
+    color: #d93030;
+    font-weight: bold;
+  }
+  
