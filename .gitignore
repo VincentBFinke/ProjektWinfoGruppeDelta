@@ -1,0 +1,16 @@
+# Umgebungsvariablen
+.env
+
+# Node-Module
+node_modules/
+
+# Betriebssystem-Müll
+.DS_Store
+
+# Log-Dateien
+*.log
+npm-debug.log*
+
+# IDE-Dateien
+.vscode/
+.idea/
