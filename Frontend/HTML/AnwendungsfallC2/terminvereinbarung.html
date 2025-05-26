@@ -4,7 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Termin vereinbaren – CARPRO</title>
-  <link rel="stylesheet" href="../../CSS/styles.css" />
+  <link rel="stylesheet" href="../../CSS/startseite.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .termin-section {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .termin-section h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form#termin-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #d93030;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #b22222;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,7 +66,6 @@
   <nav class="nav-left">
     <a href="../startseite.html">Startseite</a>
     <a href="fahrzeuge.html">Fahrzeuge</a>
-    <a href="terminvereinbarung.html" class="active">Termin</a>
   </nav>
 
   <div class="logo-center">
@@ -29,35 +81,37 @@
 
 <!-- INHALT -->
 <main>
-  <h1>Besichtigungs- oder Probefahrttermin vereinbaren</h1>
+  <section class="termin-section">
+    <h1>Besichtigungs- oder Probefahrttermin vereinbaren</h1>
 
-  <form id="termin-form" onsubmit="handleSubmit(event)">
-    <div class="input-group">
-      <label for="datum">Wunschtermin (Datum)</label>
-      <input type="date" id="datum" name="datum" required />
-    </div>
+    <form id="termin-form" onsubmit="handleSubmit(event)">
+      <div class="input-group">
+        <label for="datum">Wunschtermin (Datum)</label>
+        <input type="date" id="datum" name="datum" required />
+      </div>
 
-    <div class="input-group">
-      <label for="uhrzeit">Uhrzeit</label>
-      <input type="time" id="uhrzeit" name="uhrzeit" required />
-    </div>
+      <div class="input-group">
+        <label for="uhrzeit">Uhrzeit</label>
+        <input type="time" id="uhrzeit" name="uhrzeit" required />
+      </div>
 
-    <div class="input-group">
-      <label for="probefahrt">Probefahrt gewünscht?</label>
-      <select id="probefahrt" name="probefahrt">
-        <option value="ja">Ja</option>
-        <option value="nein">Nein</option>
-      </select>
-    </div>
+      <div class="input-group">
+        <label for="probefahrt">Probefahrt gewünscht?</label>
+        <select id="probefahrt" name="probefahrt">
+          <option value="ja">Ja</option>
+          <option value="nein">Nein</option>
+        </select>
+      </div>
 
-    <button type="submit">Weiter zu Interessentendaten</button>
-  </form>
+      <button type="submit">Weiter zu Interessentendaten</button>
+    </form>
+  </section>
 </main>
 
 <script>
   function handleSubmit(event) {
     event.preventDefault();
-    // Optional: Speichern der Daten in localStorage oder Übergabe
+    // Optional: Speichern der Daten oder Übergabe
     window.location.href = "interessentendaten.html";
   }
 </script>

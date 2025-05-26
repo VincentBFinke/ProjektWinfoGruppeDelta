@@ -4,7 +4,64 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Reservierung bestätigt – CARPRO</title>
-  <link rel="stylesheet" href="../../CSS/styles.css" />
+  <link rel="stylesheet" href="../../CSS/startseite.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .bestaetigung-section {
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    .bestaetigung-section h1 {
+      color: #d93030;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .bestaetigung-section p {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .bestaetigung-section ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 30px;
+    }
+
+    .bestaetigung-section ul li {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+
+    .bestaetigung-section ul li::before {
+      content: "✔ ";
+      color: #28a745;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .bestaetigung-section button {
+      background-color: #d93030;
+      color: white;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .bestaetigung-section button:hover {
+      background-color: #b22222;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,9 +70,6 @@
   <nav class="nav-left">
     <a href="../startseite.html">Startseite</a>
     <a href="fahrzeuge.html">Fahrzeuge</a>
-    <a href="terminvereinbarung.html">Termin</a>
-    <a href="interessentendaten.html">Daten</a>
-    <a href="bestaetigung.html" class="active">Bestätigung</a>
   </nav>
 
   <div class="logo-center">
@@ -31,19 +85,19 @@
 
 <!-- INHALT -->
 <main>
-  <h1>Vielen Dank für Ihre Reservierung!</h1>
+  <section class="bestaetigung-section">
+    <h1>Vielen Dank für Ihre Reservierung!</h1>
+    <p>Ihre Anfrage wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details.</p>
 
-  <p>Ihre Anfrage wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details.</p>
+    <ul>
+      <li>Fahrzeug wurde reserviert</li>
+      <li>Besichtigungstermin ist eingetragen</li>
+      <li>Ihre Kontaktdaten wurden gespeichert</li>
+    </ul>
 
-  <ul>
-    <li>✔ Fahrzeug wurde reserviert</li>
-    <li>✔ Besichtigungstermin ist eingetragen</li>
-    <li>✔ Ihre Kontaktdaten wurden gespeichert</li>
-  </ul>
-
-  <p>Sie können jetzt den Kaufvertrag vorbereiten:</p>
-
-  <button onclick="window.location.href='kaufvertrag.html'">Kaufvertrag erstellen</button>
+    <p>Sie können jetzt den Kaufvertrag vorbereiten:</p>
+    <button onclick="window.location.href='kaufvertrag.html'">Kaufvertrag erstellen</button>
+  </section>
 </main>
 
 </body>

@@ -4,7 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Interessentendaten – CARPRO</title>
-  <link rel="stylesheet" href="../../CSS/styles.css" />
+  <link rel="stylesheet" href="../../CSS/startseite.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .daten-section {
+      max-width: 600px;
+      margin: 60px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .daten-section h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form#daten-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .input-group label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+
+    button[type="submit"] {
+      background-color: #d93030;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #b22222;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,8 +65,6 @@
   <nav class="nav-left">
     <a href="../startseite.html">Startseite</a>
     <a href="fahrzeuge.html">Fahrzeuge</a>
-    <a href="terminvereinbarung.html">Termin</a>
-    <a href="interessentendaten.html" class="active">Daten</a>
   </nav>
 
   <div class="logo-center">
@@ -30,32 +80,34 @@
 
 <!-- INHALT -->
 <main>
-  <h1>Ihre Kontaktdaten</h1>
+  <section class="daten-section">
+    <h1>Ihre Kontaktdaten</h1>
 
-  <form id="daten-form" onsubmit="handleSubmit(event)">
-    <div class="input-group">
-      <label for="name">Vollständiger Name</label>
-      <input type="text" id="name" name="name" required />
-    </div>
+    <form id="daten-form" onsubmit="handleSubmit(event)">
+      <div class="input-group">
+        <label for="name">Vollständiger Name</label>
+        <input type="text" id="name" name="name" required />
+      </div>
 
-    <div class="input-group">
-      <label for="email">E-Mail-Adresse</label>
-      <input type="email" id="email" name="email" required />
-    </div>
+      <div class="input-group">
+        <label for="email">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required />
+      </div>
 
-    <div class="input-group">
-      <label for="telefon">Telefonnummer</label>
-      <input type="tel" id="telefon" name="telefon" required />
-    </div>
+      <div class="input-group">
+        <label for="telefon">Telefonnummer</label>
+        <input type="tel" id="telefon" name="telefon" required />
+      </div>
 
-    <button type="submit">Weiter zur Bestätigung</button>
-  </form>
+      <button type="submit">Weiter zur Bestätigung</button>
+    </form>
+  </section>
 </main>
 
 <script>
   function handleSubmit(event) {
     event.preventDefault();
-    // Daten könnten hier gespeichert/validiert werden
+    // Daten speichern, senden oder weitergeben
     window.location.href = "bestaetigung.html";
   }
 </script>
