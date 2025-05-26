@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaufvertrag – CARPRO</title>
+  <link rel="stylesheet" href="../../CSS/styles.css" />
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="main-header">
+  <nav class="nav-left">
+    <a href="../startseite.html">Startseite</a>
+    <a href="fahrzeuge.html">Fahrzeuge</a>
+    <a href="kaufvertrag.html" class="active">Kaufvertrag</a>
+  </nav>
+
+  <div class="logo-center">
+    <img src="../../images/logo.png" alt="CARPRO Logo" class="logo" />
+  </div>
+
+  <nav class="nav-right">
+    <a href="#">Services</a>
+    <a href="#">Kontakt</a>
+    <a href="../login.html"><i class="fas fa-user"></i> Login</a>
+  </nav>
+</header>
+
+<!-- INHALT -->
+<main>
+  <h1>Kaufvertrag</h1>
+
+  <section class="vertrag-section">
+    <h2>Fahrzeugdaten</h2>
+    <p><strong>Fahrzeug:</strong> Audi A3 Sportback</p>
+    <p><strong>Baujahr:</strong> 2019</p>
+    <p><strong>Kilometerstand:</strong> 55.000 km</p>
+    <p><strong>Preis:</strong> 14.900 €</p>
+  </section>
+
+  <section class="vertrag-section">
+    <h2>Käuferdaten</h2>
+    <p><strong>Name:</strong> Max Mustermann</p>
+    <p><strong>E-Mail:</strong> max@example.com</p>
+    <p><strong>Telefon:</strong> 01234 567890</p>
+  </section>
+
+  <section class="vertrag-section">
+    <h2>Vertrag</h2>
+    <p>Hiermit erklärt sich der Käufer bereit, das oben genannte Fahrzeug zum genannten Preis zu erwerben. Der Verkäufer verpflichtet sich, das Fahrzeug in dem beschriebenen Zustand zu übergeben.</p>
+  </section>
+
+  <button onclick="bestaetigen()">Kauf bestätigen</button>
+</main>
+
+<script>
+  function bestaetigen() {
+    alert("Kauf erfolgreich abgeschlossen!");
+    window.location.href = "../startseite.html";
+  }
+</script>
+
+</body>
+</html>
