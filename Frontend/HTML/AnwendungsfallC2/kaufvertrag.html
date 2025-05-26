@@ -7,19 +7,23 @@
   <link rel="stylesheet" href="../../CSS/startseite.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    .kaufvertrag-section {
-      max-width: 700px;
-      margin: 60px auto;
-      padding: 40px;
-      background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    .seite-hintergrund {
+      background-image: url("../../images/startseite.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      padding: 60px 20px;
+      position: relative;
     }
 
-    .kaufvertrag-section h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #d93030;
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.92);
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     }
 
     .vertrag-section {
@@ -40,17 +44,13 @@
     }
 
     button {
-      display: block;
-      margin: 0 auto;
       background-color: #d93030;
       color: white;
       padding: 12px 24px;
-      font-size: 1rem;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
     }
 
     button:hover {
@@ -60,7 +60,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header class="main-header">
   <nav class="nav-left">
     <a href="../startseite.html">Startseite</a>
@@ -78,9 +77,8 @@
   </nav>
 </header>
 
-<!-- INHALT -->
-<main>
-  <section class="kaufvertrag-section">
+<main class="seite-hintergrund">
+  <section class="overlay">
     <h1>Kaufvertrag</h1>
 
     <section class="vertrag-section">

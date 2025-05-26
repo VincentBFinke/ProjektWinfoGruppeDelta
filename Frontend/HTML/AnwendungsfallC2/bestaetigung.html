@@ -3,62 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reservierung bestätigt – CARPRO</title>
+  <title>Bestaetigung – CARPRO</title>
   <link rel="stylesheet" href="../../CSS/startseite.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    .bestaetigung-section {
-      max-width: 700px;
-      margin: 60px auto;
+    .seite-hintergrund {
+      background-image: url("../../images/startseite.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.92);
       padding: 40px;
-      background-color: #fff;
       border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
-      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
     }
 
-    .bestaetigung-section h1 {
-      color: #d93030;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
-    }
-
-    .bestaetigung-section p {
-      font-size: 1rem;
-      margin-bottom: 30px;
-    }
-
-    .bestaetigung-section ul {
+    ul {
       list-style: none;
       padding: 0;
-      margin-bottom: 30px;
     }
 
-    .bestaetigung-section ul li {
-      font-size: 1rem;
-      margin: 10px 0;
-    }
-
-    .bestaetigung-section ul li::before {
+    ul li::before {
       content: "✔ ";
-      color: #28a745;
-      margin-right: 8px;
-      font-weight: bold;
+      color: green;
+      margin-right: 6px;
     }
 
-    .bestaetigung-section button {
+    button {
       background-color: #d93030;
       color: white;
       padding: 12px 24px;
-      font-size: 1rem;
       border: none;
       border-radius: 8px;
-      cursor: pointer;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      cursor: pointer;
     }
 
-    .bestaetigung-section button:hover {
+    button:hover {
       background-color: #b22222;
     }
   </style>
@@ -83,18 +72,15 @@
   </nav>
 </header>
 
-<!-- INHALT -->
-<main>
-  <section class="bestaetigung-section">
+<main class="seite-hintergrund">
+  <section class="overlay">
     <h1>Vielen Dank für Ihre Reservierung!</h1>
     <p>Ihre Anfrage wurde erfolgreich übermittelt. Sie erhalten in Kürze eine Bestätigungs-E-Mail mit allen Details.</p>
-
     <ul>
       <li>Fahrzeug wurde reserviert</li>
       <li>Besichtigungstermin ist eingetragen</li>
       <li>Ihre Kontaktdaten wurden gespeichert</li>
     </ul>
-
     <p>Sie können jetzt den Kaufvertrag vorbereiten:</p>
     <button onclick="window.location.href='kaufvertrag.html'">Kaufvertrag erstellen</button>
   </section>
