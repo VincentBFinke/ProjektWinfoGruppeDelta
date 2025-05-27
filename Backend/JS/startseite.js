@@ -2,15 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const marken = [
     { name: "Audi", image: "audi.png" },
     { name: "BMW", image: "bmw.png" },
-    { name: "Ford", image: "ford.png" },
-    { name: "Hyundai", image: "hyundai.png" },
-    { name: "Kia", image: "kia.png" },
     { name: "Mercedes-Benz", image: "mercedes.png" },
-    { name: "Opel", image: "opel.png" },
-    { name: "Peugeot", image: "peugeot.png" },
-    { name: "Porsche", image: "porsche.png" },
-    { name: "Skoda", image: "skoda.png" },
-    { name: "Toyota", image: "toyota.png" },
     { name: "Volkswagen", image: "vw.png" },
   ];
 

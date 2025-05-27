@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  <!-- HEADER aus Startseite -->
+  <!-- HEADER -->
   <header class="main-header">
     <nav class="nav-left">
       <a href="startseite.html">Startseite</a>
@@ -38,7 +38,6 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const marke = urlParams.get("name");
-
     document.getElementById("marken-title").textContent = `Fahrzeuge von ${marke}`;
 
     fetch('http://localhost:3000/api/fahrzeuge?marke=' + encodeURIComponent(marke))
@@ -60,13 +59,14 @@
               <h3>${auto.hersteller} ${auto.modell}</h3>
               <div class="info-grid">
                 <span><strong>Kraftstoff:</strong> ${auto.kraftstoff}</span>
-                <span><strong>Erstzulassung:</strong> ${auto.erstzulassung}</span>
-                <span><strong>Kilometer:</strong> ${auto.kilometerstand.toLocaleString()} km</span>
+                <span><strong>Erstzulassung:</strong> ${new Date(auto.erstzulassung).getFullYear()}</span>
+                <span><strong>Kilometer:</strong>&nbsp;${auto.kilometerstand.toLocaleString()}&nbsp;km</span>
                 <span><strong>Getriebe:</strong> ${auto.getriebe}</span>
-                <span><strong>Leistung:</strong> ${auto.leistung} PS</span>
-                <span><strong>Karosserie:</strong> ${auto.karosserie}</span>
+                <span><strong>Leistung:</strong> ${auto.leistung}&nbsp;PS</span>
+                <span><strong>Karosserie:</strong>&nbsp;${auto.karosserie}</span>
               </div>
               <div class="fahrzeug-preis">${auto.preis.toLocaleString()} €</div>
+              <a href="#" class="details-button">DETAILS</a>
             </div>
           `;
           container.appendChild(card);
