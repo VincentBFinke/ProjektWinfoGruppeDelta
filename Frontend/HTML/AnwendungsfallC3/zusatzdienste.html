@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CARPRO Autovermietung</title>
+  <link rel="stylesheet" href="../../CSS/styles.css" />
+  <link rel="stylesheet" href="../../CSS/zusatzdienste.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <nav class="nav-left">
+      <a href="#" class="active">Startseite</a>
+      <a href="#">Fahrzeugbestand</a>
+    </nav>
+
+    <div class="logo-center">
+      <img src="../../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+
+    <nav class="nav-right">
+      <a href="#">Services</a>
+      <a href="#">Kontakt</a>
+      <a href="#"><i class="fas fa-user"></i> Login</a>
+    </nav>
+  </header>
+
+<div class="zusatzdienste-container">
+  <h2>Zusatzdienste beauftragen</h2>
+  <form id="zusatzdienste-form">
+    <fieldset>
+      <legend>Welche Zusatzdienste wünschen Sie?</legend>
+      <label><input type="radio" name="dienste" value="finanzierung" onchange="toggleSection('finanzierung')"> Finanzierung / Leasing</label><br>
+      <label><input type="radio" name="dienste" value="zulassung" onchange="toggleSection('zulassung')"> Zulassungsservice</label><br>
+      <label><input type="radio" name="dienste" value="inzahlungnahme" onchange="toggleSection('inzahlung')"> Inzahlungnahme Altfahrzeug</label>
+    </fieldset>
+
+    <div id="finanzierung-section" class="dienst-section" style="display: none">
+      <h3>Finanzierung / Leasing</h3>
+      <label>Monatliches Einkommen: <input type="number" name="einkommen"></label><br>
+      <label>Anzahlung: <input type="number" name="anzahlung"></label><br>
+      <label>Laufzeit (Monate): <input type="number" name="laufzeit"></label>
+    </div>
+
+    <div id="zulassung-section" class="dienst-section" style="display: none">
+      <h3>Zulassungsservice</h3>
+      <label>Wunschkennzeichen: <input type="text" name="kennzeichen"></label><br>
+      <label>Fahrzeug-ID: <input type="text" name="fahrzeugId"></label>
+    </div>
+
+    <div id="inzahlung-section" class="dienst-section" style="display: none">
+      <h3>Inzahlungnahme Altfahrzeug</h3>
+      <label>Fahrzeugmodell: <input type="text" name="altmodell"></label><br>
+      <label>Baujahr: <input type="number" name="baujahr"></label><br>
+      <label>Zustand: <select name="zustand">
+        <option>Sehr gut</option>
+        <option>Gut</option>
+        <option>Akzeptabel</option>
+        <option>Schlecht</option>
+      </select></label>
+    </div>
+
+    <button type="submit">Absenden</button>
+  </form>
+
+  <div id="zusammenfassung" style="display: none; margin-top: 20px;"></div>
+</div>
+
+<script>
+  function toggleSection(id) {
+    // Alle Sektionen verstecken
+    const sections = document.querySelectorAll('.dienst-section');
+    sections.forEach(section => section.style.display = 'none');
+
+    // Gewählte Sektion anzeigen
+    const section = document.getElementById(id + '-section');
+    if (section) section.style.display = 'block';
+  }
+
+  document.getElementById('zusatzdienste-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const form = new FormData(this);
+    const daten = {};
+    form.forEach((value, key) => {
+      if (daten[key]) {
+        if (!Array.isArray(daten[key])) daten[key] = [daten[key]];
+        daten[key].push(value);
+      } else {
+        daten[key] = value;
+      }
+    });
+    document.getElementById('zusammenfassung').style.display = 'block';
+    document.getElementById('zusammenfassung').innerHTML =
+      `<h3>Zusammenfassung:</h3><pre>${JSON.stringify(daten, null, 2)}</pre>`;
+    window.location.href = 'zusatzdienste-ausgewaehlt.html';
+  });
+</script>
+</body>
+</html>
