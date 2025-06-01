@@ -1,0 +1,201 @@
+:root {
+  --primary-color: #e63946; /* Carpro Rot */
+  --secondary-color: #f1faee; /* Hellgrau */
+  --dark-color: #d23a3a; /* Dunkelrot/Dunkel */
+  --light-color: #a8dadc; /* Akzentfarbe */
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--secondary-color);
+  color: #333;
+}
+
+/* HEADER */
+.main-header {
+  background-color: var(--dark-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+}
+
+.main-header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.main-header nav a:hover,
+.main-header nav a.active {
+  background-color: var(--primary-color);
+  font-weight: 700;
+}
+
+.logo-center {
+  flex: 1;
+  text-align: center;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+
+/* Zusatzdienste Container */
+.zusatzdienste-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 30px 40px;
+}
+
+.zusatzdienste-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: var(--dark-color);
+}
+
+/* Formular */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset {
+  border: 2px solid var(--dark-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+legend {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--dark-color);
+  padding: 0 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+input[type="number"],
+input[type="text"],
+select {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 200px;
+  background-color: white;
+  margin-left: 10px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 6px var(--primary-color);
+}
+
+/* Anpassung für Checkbox-Nahme und Eingaben */
+.dienst-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--light-color);
+  border-radius: 8px;
+  border: 1px solid #a0c7ca;
+}
+
+/* Button */
+button[type="submit"] {
+  align-self: center;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 50px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #c1121f;
+}
+
+/* Zusammenfassung */
+#zusammenfassung {
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 8px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  border: 1px solid var(--primary-color);
+  color: var(--dark-color);
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .main-header nav {
+    margin: 10px 0;
+  }
+
+  .logo-center {
+    margin: 10px 0;
+  }
+
+  input[type="number"],
+  input[type="text"],
+  select {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+  }
+}

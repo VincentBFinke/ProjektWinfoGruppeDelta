@@ -1,0 +1,81 @@
+.zusatzdienste-erfolgreich-container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 2.5rem;
+  max-width: 900px;
+  margin: 3rem auto;
+}
+
+.zusatzdienste-erfolgreich-container h1 {
+  font-size: 2rem;
+  color: var(--dark-color);
+  margin-bottom: 1rem;
+}
+
+.zusatzdienste-erfolgreich-container h2,
+.zusatzdienste-erfolgreich-container h3 {
+  color: var(--primary-color);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.zusatzdienste-erfolgreich-container p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.zusatzdienste-erfolgreich-container ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.zusatzdienste-erfolgreich-container li {
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.zusatzdienste-erfolgreich-container li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--light-color);
+  font-weight: bold;
+}
+
+.zusatzdienste-erfolgreich-container a {
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.zusatzdienste-erfolgreich-container a:hover {
+  color: #c1121f;
+  text-decoration: underline;
+}
+
+/* Optional: Styling für E-Mail-Link */
+.zusatzdienste-erfolgreich-container a[href^="mailto:"] {
+  color: var(--dark-color);
+  font-weight: normal;
+}
+
+@media (max-width: 768px) {
+  .zusatzdienste-erfolgreich-container {
+    padding: 1.5rem;
+  }
+}
+
+.button-box {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  background-color: var(--secondary-color);
+  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.15); /* leichter Schatten in Primärfarbe */
+  display: inline-block; /* damit die Box nicht zu breit wird */
+}
+
