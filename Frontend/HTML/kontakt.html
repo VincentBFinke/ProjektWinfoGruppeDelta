@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontakt – CARPRO Autovermietung</title>
+  <link rel="stylesheet" href="../CSS/kontakt.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER (wie auf Startseite) -->
+  <header class="main-header">
+    <nav class="nav-left">
+      <a href="startseite.html">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+    </nav>
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+    <nav class="nav-right">
+      <a href="#">Services</a>
+      <a href="#" class="active">Kontakt</a>
+      <a href="#"><i class="fas fa-user"></i> Login</a>
+    </nav>
+  </header>
+
+  <!-- HERO TEXT -->
+  <section class="kontakt-hero">
+    <h1>Kontakt zu uns!</h1>
+    <p>Haben Sie Fragen, Anregungen oder Feedback?<br>
+    Unser Team steht Ihnen jederzeit zur Verfügung und meldet sich schnellstmöglich bei Ihnen.</p>
+  </section>
+
+  <!-- KONTAKTBEREICH -->
+  <main>
+    <div class="kontakt-container">
+      <!-- Kontaktinfos mit Hintergrund -->
+      <div class="kontakt-info">
+        <h2>CARPRO Autovermietung</h2>
+        <p><i class="fas fa-map-marker-alt"></i>Carpro Straße 7<br>46397 Bocholt</p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:info@carpro.de">carprocarrental@outlook.de</a></p>
+        <p><i class="fas fa-car"></i> <a href="#">Ankauf-Anfrage</a></p>
+      </div>
+
+      <!-- Formular -->
+      <form class="kontakt-formular">
+        <h2>Kontakt</h2>
+        <div class="form-row">
+          <input type="text" name="vorname" placeholder="Vorname" required />
+          <input type="text" name="nachname" placeholder="Nachname" required />
+        </div>
+        <input type="email" name="email" placeholder="E-Mail" required />
+        <input type="tel" name="telefon" placeholder="Telefon" />
+        <textarea name="nachricht" placeholder="Nachricht" rows="4" required></textarea>
+        <div class="datenschutz">
+          <input type="checkbox" id="ds" required>
+          <label for="ds">
+            Ich stimme zu, dass meine Angaben zur Kontaktaufnahme und für Rückfragen gespeichert werden.
+          </label>
+        </div>
+        <button type="submit" class="senden-btn">Senden</button>
+      </form>
+    </div>
+  </main>
+
+</body>
+</html>

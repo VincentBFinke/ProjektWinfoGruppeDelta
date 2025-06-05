@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fahrzeugbestand</title>
+  <link rel="stylesheet" href="../CSS/fahrzeugbestand.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="main-header">
+    <nav class="nav-left">
+      <a href="startseite.html">Startseite</a>
+      <a href="#" class="active">Fahrzeugbestand</a>
+    </nav>
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+    <nav class="nav-right">
+      <a href="#">Services</a>
+      <a href="#">Kontakt</a>
+      <a href="#"><i class="fas fa-user"></i> Login</a>
+    </nav>
+  </header>
+
+  <main style="background-color: #e5e5e5; min-height: 100vh;">
+    <form class="filter-bar" onsubmit="event.preventDefault(); loadFahrzeuge();">
+      <div class="filter-group">
+        <label for="filter-karosserie">Karosserie</label>
+        <select id="filter-karosserie"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-hersteller">Hersteller</label>
+        <select id="filter-hersteller"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-modell">Modell</label>
+        <select id="filter-modell"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-kraftstoff">Kraftstoff</label>
+        <select id="filter-kraftstoff"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-getriebe">Getriebe</label>
+        <select id="filter-getriebe"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-kilometer">Kilometerstand bis</label>
+        <select id="filter-kilometer"></select>
+      </div>
+      <div class="filter-group">
+        <label for="filter-erstzulassung_ab">Erstzulassung ab</label>
+        <select id="filter-erstzulassung_ab"></select>
+      </div>
+      <button id="filter-button" type="submit">Ergebnisse anzeigen</button>
+    </form>
+    <h1 id="fahrzeug-title" style="text-align: center; padding-top: 40px;">Fahrzeugbestand</h1>
+    <div id="fahrzeug-container" class="fahrzeug-grid"></div>
+  </main>
+  <script src="../JS/fahrzeugbestand.js"></script>
+</body>
+</html>

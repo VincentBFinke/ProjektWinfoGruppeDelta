@@ -1,20 +1,14 @@
-// server.js
 const express = require('express');
 const cors = require('cors');
 const app = express();
 
-// Routen einbinden
-const markenRouter = require('./marken');
-const fahrzeugeRouter = require('./fahrzeuge');
+const fahrzeugeRouter = require('./fahrzeuge'); // << Nur fahrzeuge nötig
 
 app.use(cors());
-app.use(express.json()); // für POST-Requests
+app.use(express.json());
 
-// Routen verwenden
-app.use('/api', markenRouter);
-app.use('/api', fahrzeugeRouter);
+app.use('/api/fahrzeuge', fahrzeugeRouter);
 
-// Statische Bilder (z. B. Fahrzeugbilder im Unterordner "fahrzeuge")
 app.use('/images', express.static(__dirname + '/../../Frontend/images'));
 app.use('/images/fahrzeuge', express.static(__dirname + '/../../Frontend/images/fahrzeuge'));
 
