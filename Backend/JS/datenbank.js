@@ -1,4 +1,4 @@
-require('dotenv').config({ path: __dirname + '/../../.env' }); // <- feste Pfadangabe
+require('dotenv').config({ path: __dirname + '/../../.env' }); // feste Pfadangabe
 const { Pool } = require('pg');
 
 console.log("🌐 Verbindung zu:", process.env.PG_HOST); // Debug-Ausgabe

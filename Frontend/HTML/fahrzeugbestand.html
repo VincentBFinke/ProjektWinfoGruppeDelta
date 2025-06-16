@@ -9,21 +9,35 @@
 </head>
 <body>
   <header class="main-header">
-    <nav class="nav-left">
-      <a href="startseite.html">Startseite</a>
-      <a href="#" class="active">Fahrzeugbestand</a>
-    </nav>
-    <div class="logo-center">
+    <div class="header-center">
       <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center">
+        <!-- Wird per JS gefüllt -->
+      </nav>
     </div>
-    <nav class="nav-right">
-      <a href="#">Services</a>
-      <a href="#">Kontakt</a>
-      <a href="#"><i class="fas fa-user"></i> Login</a>
-    </nav>
   </header>
 
+  <!-- Login-Modal -->
+  <div id="login-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">E-Mail-Adresse</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-passwort">Passwort</label>
+        <input type="password" id="login-passwort" name="passwort" required>
+        <button type="submit" class="login-btn">Anmelden</button>
+        <p class="register-hint">
+          Noch kein Konto?
+          <a href="registrieren.html" id="go-register">Jetzt registrieren</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
   <main style="background-color: #e5e5e5; min-height: 100vh;">
+    <h1 id="fahrzeug-title" class="fahrzeug-title">Fahrzeugbestand</h1>
     <form class="filter-bar" onsubmit="event.preventDefault(); loadFahrzeuge();">
       <div class="filter-group">
         <label for="filter-karosserie">Karosserie</label>
@@ -55,9 +69,89 @@
       </div>
       <button id="filter-button" type="submit">Ergebnisse anzeigen</button>
     </form>
-    <h1 id="fahrzeug-title" style="text-align: center; padding-top: 40px;">Fahrzeugbestand</h1>
     <div id="fahrzeug-container" class="fahrzeug-grid"></div>
   </main>
+
   <script src="../JS/fahrzeugbestand.js"></script>
+  <script>
+    // --------- Header + Login Logik wie auf den anderen Seiten ----------
+    function getRedirectParam() {
+      return encodeURIComponent(window.location.pathname.replace(/^.*\//, '') + window.location.search);
+    }
+
+    function updateHeaderUser() {
+      const navCenter = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="#" class="active">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          updateHeaderUser();
+        };
+      } else {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="#" class="active">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
+
+    // Modal schließen
+    document.getElementById("close-login").onclick = () => {
+      document.getElementById("login-modal").style.display = "none";
+    };
+    document.getElementById("login-modal").onclick = (e) => {
+      if (e.target === document.getElementById("login-modal")) {
+        document.getElementById("login-modal").style.display = "none";
+      }
+    };
+
+    // Login-Formular abfangen
+    document.getElementById("login-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const passwort = document.getElementById("login-passwort").value;
+      try {
+        const res = await fetch("http://localhost:3000/api/auth/anmelden", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, passwort }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          alert(data.message || "Login fehlgeschlagen!");
+          return;
+        }
+        localStorage.setItem("userName", data.name || data.firma || "Profil");
+        document.getElementById("login-modal").style.display = "none";
+        updateHeaderUser();
+      } catch (err) {
+        alert("Serverfehler beim Login.");
+      }
+    };
+
+    // "Jetzt registrieren" im Modal -> übernimmt redirect auf aktuelle Seite
+    document.getElementById("go-register").onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "registrieren.html?redirect=" + getRedirectParam();
+    };
+
+    document.addEventListener("DOMContentLoaded", updateHeaderUser);
+  </script>
 </body>
 </html>

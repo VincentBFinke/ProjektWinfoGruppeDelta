@@ -1,45 +1,461 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Carpro – Fahrzeugdetails</title>
-    <link rel="stylesheet" href="../CSS/einzelangebot.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fahrzeugangebot</title>
+  <link rel="stylesheet" href="../CSS/einzelangebot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-
-<header>
-    <div class="logo-container">
-        <img src="../images/logo.png" alt="Carpro Logo" class="logo">
+  <header class="main-header">
+    <div class="header-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center"></nav>
     </div>
-    <nav>
-        <a href="angebotsseite.html">← Zurück zu den Angeboten</a>
-    </nav>
-</header>
+  </header>
 
-<main class="detail-layout">
-    <section class="image-section">
-        <img id="mainImage" src="../images/auto1.jpg" alt="Hauptbild">
-        <div class="thumbnail-container">
-            <img class="thumbnail active" src="../images/auto1_thumb1.jpg" alt="" data-src="../images/auto1.jpg">
-            <img class="thumbnail" src="../images/auto1_thumb2.jpg" alt="" data-src="../images/auto1_alt.jpg">
+  <!-- Login-Modal -->
+  <div id="login-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">E-Mail-Adresse</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-passwort">Passwort</label>
+        <input type="password" id="login-passwort" name="passwort" required>
+        <button type="submit" class="login-btn">Anmelden</button>
+        <p class="register-hint">
+          Noch kein Konto?
+          <a href="registrieren.html" id="go-register">Jetzt registrieren</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Reservierungs-Erfolg Modal -->
+  <div id="reservierung-erfolg-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-erfolg">&times;</span>
+      <h2 style="color:#d93030;text-align:center;">Vielen Dank für Ihre Reservierung!</h2>
+      <p style="text-align:center;">
+        Ihre Reservierung war erfolgreich.<br>
+        Sie erhalten in Kürze eine Bestätigungs-E-Mail.<br>
+        Wir freuen uns auf Ihren Besuch!
+      </p>
+    </div>
+  </div>
+
+  <!-- Kauf-Erfolg Modal -->
+  <div id="kauf-erfolg-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-kauferfolg">&times;</span>
+      <h2 style="color:#d93030;text-align:center;">Vielen Dank für Ihren Kauf!</h2>
+      <p style="text-align:center;">
+        Ihr Kauf war erfolgreich.<br>
+        Sie erhalten in Kürze Ihren Kaufvertrag per E-Mail.<br>
+        Wir gratulieren zum neuen Fahrzeug!
+      </p>
+    </div>
+  </div>
+
+  <!-- Reservierungsformular Modal -->
+  <div id="reservierung-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-reservierung">&times;</span>
+      <form id="reservierung-form">
+        <h2>Besichtigungstermin/Reservierung</h2>
+        <div class="reservierungs-row">
+          <label for="name">Ihr Name</label>
+          <input type="text" id="name" name="name" required>
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="email" required>
+          <label for="wunschtermin">Wunschtermin</label>
+          <input type="date" id="wunschtermin" name="wunschtermin" required>
+          <label for="uhrzeit">Uhrzeit</label>
+          <input type="time" id="uhrzeit" name="uhrzeit" required>
         </div>
-    </section>
+        <button type="submit" id="reservieren-form-btn">Reservieren</button>
+      </form>
+    </div>
+  </div>
 
-    <section class="info-section">
-        <h1>BMW 3er</h1>
-        <p class="price">22.900 €</p>
-        <ul class="details">
-            <li>Baujahr: 2019</li>
-            <li>Kilometerstand: 54.000 km</li>
-            <li>Leistung: 150 PS</li>
-            <li>Kraftstoff: Benzin</li>
-            <li>Getriebe: Automatik</li>
-        </ul>
-        <button class="btn-kontakt">Kontakt aufnehmen</button>
-    </section>
-</main>
+  <!-- Kauf-Modal -->
+  <div id="kauf-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-kauf">&times;</span>
+      <form id="kauf-form">
+        <h2>Fahrzeug jetzt kaufen</h2>
+        <div class="kauf-row">
+          <label for="kauf-name">Ihr Name</label>
+          <input type="text" id="kauf-name" name="kauf-name" required>
+          <label for="kauf-email">E-Mail</label>
+          <input type="email" id="kauf-email" name="kauf-email" required>
+          <label for="kauf-adresse">Adresse</label>
+          <input type="text" id="kauf-adresse" name="kauf-adresse" required>
+          <label for="kauf-telefon">Telefon</label>
+          <input type="tel" id="kauf-telefon" name="kauf-telefon" required>
+        </div>
+        <button type="submit" id="kaufen-form-btn">Jetzt kaufen</button>
+      </form>
+    </div>
+  </div>
 
-<script src="../JS/einzelangebot.js"></script>
+  <main>
+    <div class="angebot-container">
+      <div class="angebot-content">
+        <div class="angebot-image-box">
+          <img id="fahrzeugbild" src="" alt="Fahrzeugbild" />
+          <div id="verkauft-badge" class="verkauft-badge" style="display:none;">Verkauft</div>
+          <div id="reserviert-badge" class="reserviert-badge" style="display:none;"></div>
+          <div class="image-nav">
+            <button id="prev-btn" class="image-btn"><i class="fa fa-chevron-left"></i></button>
+            <button id="next-btn" class="image-btn"><i class="fa fa-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="angebot-details-scrollbox">
+          <a href="fahrzeugbestand.html" class="zurueck-btn"><i class="fa fa-arrow-left"></i> Zurück zum Fahrzeugbestand</a>
+          <div class="angebot-details">
+            <h1 id="titel"></h1>
+            <div class="preis" id="preis"></div>
+            <div class="abschnitt">
+              <h2>Beschreibung</h2>
+              <p id="beschreibung"></p>
+            </div>
+            <div class="abschnitt">
+              <h2>Technische Daten</h2>
+              <table id="technische-daten"></table>
+            </div>
+            <div class="abschnitt">
+              <h2>Ausstattung</h2>
+              <ul class="ausstattung-list" id="ausstattung-liste"></ul>
+            </div>
+            <div class="action-buttons">
+              <button class="reservieren-btn" id="reservieren-btn" type="button">
+                <i class="fa-solid fa-calendar-check"></i>
+                Besichtigungstermin/Probefahrt vereinbaren & reservieren
+              </button>
+              <button class="kaufen-btn" id="kaufen-btn" type="button">
+                <i class="fa-solid fa-car"></i>
+                Jetzt kaufen
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const fahrzeugId = urlParams.get("id");
+    let bilder = [];
+    let bildIndex = 0;
+    let istReserviert = false;
+    let istVerkauft = false;
+    let pendingReservierungsClick = false;
+    let pendingKaufClick = false;
+
+    async function loadFahrzeug() {
+      const res = await fetch(`http://localhost:3000/api/fahrzeuge?id=${fahrzeugId}`);
+      const data = await res.json();
+      const fahrzeug = data[0];
+      if (!fahrzeug) return;
+
+      document.getElementById("titel").textContent = `${fahrzeug.hersteller} ${fahrzeug.modell}`;
+      document.getElementById("preis").textContent = `${Number(fahrzeug.preis).toLocaleString()} €`;
+      document.getElementById("beschreibung").textContent = fahrzeug.beschreibung || "-";
+      // Technische Daten Tabelle
+      const tabelle = document.getElementById("technische-daten");
+      tabelle.innerHTML = "";
+      if (fahrzeug.technische_daten) {
+        let daten;
+        try { daten = JSON.parse(fahrzeug.technische_daten); } catch { daten = {}; }
+        Object.entries(daten).forEach(([key, value]) => {
+          tabelle.innerHTML += `<tr><td class="td-key">${key}</td><td>${value}</td></tr>`;
+        });
+      }
+      // Ausstattung
+      const ausstattung = fahrzeug.ausstattung
+        ? fahrzeug.ausstattung.split('\n').filter(item => item.trim() && item.trim() !== '-')
+        : [];
+      const ausstattungList = document.getElementById('ausstattung-liste');
+      ausstattungList.innerHTML = ausstattung.length
+        ? ausstattung.map(item => `<li>${item.replace(/^[-•]\s*/, '')}</li>`).join('')
+        : '<li>Keine Angabe</li>';
+
+      // Verkauft- & Reserviert-Badge
+      istVerkauft = !!fahrzeug.verkauft && fahrzeug.verkauft !== false;
+      if (istVerkauft) {
+        document.getElementById("verkauft-badge").style.display = "inline-block";
+        document.getElementById("reserviert-badge").style.display = "none";
+        document.getElementById("reservieren-btn").disabled = true;
+        document.getElementById("reservieren-btn").textContent = "Verkauft";
+        document.getElementById("kaufen-btn").disabled = true;
+        document.getElementById("kaufen-btn").textContent = "Verkauft";
+      } else if (fahrzeug.reserviert_bis && new Date(fahrzeug.reserviert_bis) >= new Date()) {
+        document.getElementById("reserviert-badge").style.display = "inline-block";
+        const resBis = new Date(fahrzeug.reserviert_bis);
+        document.getElementById("reserviert-badge").textContent = `Reserviert bis ${resBis.toLocaleDateString('de-DE')}`;
+        istReserviert = true;
+        document.getElementById("reservieren-btn").disabled = true;
+        document.getElementById("reservieren-btn").textContent = "Bereits reserviert";
+        document.getElementById("kaufen-btn").disabled = true;
+        document.getElementById("kaufen-btn").textContent = "Reserviert";
+        document.getElementById("verkauft-badge").style.display = "none";
+      } else {
+        document.getElementById("verkauft-badge").style.display = "none";
+        document.getElementById("reserviert-badge").style.display = "none";
+        istReserviert = false;
+        document.getElementById("reservieren-btn").disabled = false;
+        document.getElementById("reservieren-btn").innerHTML = '<i class="fa-solid fa-calendar-check"></i> Besichtigungstermin/Probefahrt vereinbaren & reservieren';
+        document.getElementById("kaufen-btn").disabled = false;
+        document.getElementById("kaufen-btn").innerHTML = '<i class="fa-solid fa-car"></i> Jetzt kaufen';
+      }
+    }
+
+    // ------------- BILDER LADEN -------------
+    fetch(`http://localhost:3000/api/fahrzeuge/${fahrzeugId}/bilder`)
+      .then(res => res.json())
+      .then(data => {
+        bilder = data;
+        bildIndex = 0;
+        setBild();
+      });
+
+    function setBild() {
+      const img = document.getElementById("fahrzeugbild");
+      if (bilder && bilder[bildIndex]) {
+        let pfad = bilder[bildIndex];
+        if (pfad.startsWith("/images")) pfad = ".." + pfad;
+        img.src = pfad;
+      } else {
+        img.src = "../images/fahrzeuge/platzhalter.jpg";
+      }
+    }
+    document.getElementById("prev-btn").onclick = () => {
+      if (bilder.length === 0) return;
+      bildIndex = (bildIndex - 1 + bilder.length) % bilder.length;
+      setBild();
+    };
+    document.getElementById("next-btn").onclick = () => {
+      if (bilder.length === 0) return;
+      bildIndex = (bildIndex + 1) % bilder.length;
+      setBild();
+    };
+
+    // ---------------- HEADER, LOGIN & BUTTON-LOGIK -----------------
+    function getRedirectParam() {
+      return encodeURIComponent(window.location.pathname.replace(/^.*\//, '') + window.location.search);
+    }
+
+    function updateHeaderUser() {
+      const navCenter = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          updateHeaderUser();
+        };
+      } else {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
+
+    document.getElementById("close-login").onclick = () => {
+      document.getElementById("login-modal").style.display = "none";
+    };
+    document.getElementById("login-modal").onclick = (e) => {
+      if (e.target === document.getElementById("login-modal")) {
+        document.getElementById("login-modal").style.display = "none";
+      }
+    };
+
+    document.getElementById("login-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const passwort = document.getElementById("login-passwort").value;
+      try {
+        const res = await fetch("http://localhost:3000/api/auth/anmelden", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, passwort }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          alert(data.message || "Login fehlgeschlagen!");
+          return;
+        }
+        localStorage.setItem("userName", data.name || data.firma || "Profil");
+        document.getElementById("login-modal").style.display = "none";
+        updateHeaderUser();
+
+        // Wenn wir eigentlich auf Reservieren wollten, direkt danach öffnen!
+        if (pendingReservierungsClick) {
+          pendingReservierungsClick = false;
+          setTimeout(() => {
+            document.getElementById("reservierung-modal").style.display = "flex";
+          }, 200);
+        }
+        // Wenn wir eigentlich kaufen wollten, direkt danach öffnen!
+        if (pendingKaufClick) {
+          pendingKaufClick = false;
+          setTimeout(() => {
+            document.getElementById("kauf-modal").style.display = "flex";
+          }, 200);
+        }
+      } catch (err) {
+        alert("Serverfehler beim Login.");
+      }
+    };
+
+    document.getElementById("go-register").onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "registrieren.html?redirect=" + getRedirectParam();
+    };
+
+    // --------- Reservieren Button-Logik ---------
+    document.getElementById("reservieren-btn").onclick = function() {
+      if (istReserviert || istVerkauft) return;
+      if (!localStorage.getItem("userName")) {
+        pendingReservierungsClick = true;
+        document.getElementById("login-modal").style.display = "flex";
+      } else {
+        document.getElementById("reservierung-modal").style.display = "flex";
+      }
+    };
+
+    // --------- Kaufen Button-Logik ---------
+    document.getElementById("kaufen-btn").onclick = function() {
+      if (istVerkauft || istReserviert) return;
+      if (!localStorage.getItem("userName")) {
+        pendingKaufClick = true;
+        document.getElementById("login-modal").style.display = "flex";
+      } else {
+        document.getElementById("kauf-modal").style.display = "flex";
+      }
+    };
+
+    // ---------- Reservierung Modal Logik ----------
+    document.getElementById("close-reservierung").onclick = () => {
+      document.getElementById("reservierung-modal").style.display = "none";
+    };
+    document.getElementById("reservierung-modal").onclick = (e) => {
+      if (e.target === document.getElementById("reservierung-modal")) {
+        document.getElementById("reservierung-modal").style.display = "none";
+      }
+    };
+
+    document.getElementById("reservierung-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const wunschtermin = document.getElementById("wunschtermin").value;
+      const uhrzeit = document.getElementById("uhrzeit").value;
+
+      document.getElementById("reservieren-form-btn").textContent = "Reservierung läuft...";
+
+      try {
+        const res = await fetch("http://localhost:3000/api/reservierung", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fahrzeug_id: fahrzeugId, name, email, wunschtermin, uhrzeit })
+        });
+        const data = await res.json();
+        document.getElementById("reservieren-form-btn").textContent = "Reservieren";
+        if (data.success) {
+          document.getElementById("reservierung-modal").style.display = "none";
+          document.getElementById("reservierung-erfolg-modal").style.display = "flex";
+          loadFahrzeug();
+        } else {
+          alert(data.message || "Reservierung fehlgeschlagen.");
+        }
+      } catch (err) {
+        document.getElementById("reservieren-form-btn").textContent = "Reservieren";
+        alert("Serverfehler beim Reservieren.");
+      }
+    };
+
+    // ---------- Kauf Modal Logik ----------
+    document.getElementById("close-kauf").onclick = () => {
+      document.getElementById("kauf-modal").style.display = "none";
+    };
+    document.getElementById("kauf-modal").onclick = (e) => {
+      if (e.target === document.getElementById("kauf-modal")) {
+        document.getElementById("kauf-modal").style.display = "none";
+      }
+    };
+
+    document.getElementById("kauf-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const name = document.getElementById("kauf-name").value;
+      const email = document.getElementById("kauf-email").value;
+      const adresse = document.getElementById("kauf-adresse").value;
+      const telefon = document.getElementById("kauf-telefon").value;
+
+      document.getElementById("kaufen-form-btn").textContent = "Kauf läuft...";
+
+      try {
+        const res = await fetch("http://localhost:3000/api/kauf", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ fahrzeug_id: fahrzeugId, name, email, adresse, telefon })
+        });
+        const data = await res.json();
+        document.getElementById("kaufen-form-btn").textContent = "Jetzt kaufen";
+        if (data.success) {
+          document.getElementById("kauf-modal").style.display = "none";
+          document.getElementById("kauf-erfolg-modal").style.display = "flex";
+          loadFahrzeug();
+        } else {
+          alert(data.message || "Kauf fehlgeschlagen.");
+        }
+      } catch (err) {
+        document.getElementById("kaufen-form-btn").textContent = "Jetzt kaufen";
+        alert("Serverfehler beim Kauf.");
+      }
+    };
+
+    // Erfolg-Modal schließen (nur über X)
+    document.getElementById("close-erfolg").onclick = closeErfolgModal;
+    document.getElementById("reservierung-erfolg-modal").onclick = function(e) {
+      if (e.target === this) closeErfolgModal();
+    };
+    function closeErfolgModal() {
+      document.getElementById("reservierung-erfolg-modal").style.display = "none";
+    }
+    document.getElementById("close-kauferfolg").onclick = closeKaufErfolgModal;
+    document.getElementById("kauf-erfolg-modal").onclick = function(e) {
+      if (e.target === this) closeKaufErfolgModal();
+    };
+    function closeKaufErfolgModal() {
+      document.getElementById("kauf-erfolg-modal").style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      updateHeaderUser();
+      loadFahrzeug();
+    });
+  </script>
 </body>
 </html>

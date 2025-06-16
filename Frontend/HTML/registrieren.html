@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrieren | CARPRO</title>
+  <link rel="stylesheet" href="../CSS/registrieren.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+  </header>
+
+  <main>
+    <div class="register-container">
+      <form id="register-form" autocomplete="off">
+        <h2>Konto erstellen</h2>
+        <div class="kundentyp-row">
+          <label>
+            <input type="radio" name="kundentyp" value="privat" checked>
+            Privatkunde
+          </label>
+          <label>
+            <input type="radio" name="kundentyp" value="geschaeft">
+            Geschäftskunde
+          </label>
+        </div>
+        <div id="privat-fields">
+          <label>Vollständiger Name*</label>
+          <input type="text" name="name" required>
+        </div>
+        <div id="geschaeft-fields" style="display: none;">
+          <label>Firma*</label>
+          <input type="text" name="firma">
+          <label>USt-Id</label>
+          <input type="text" name="ustid">
+          <label>Ansprechpartner*</label>
+          <input type="text" name="ansprechpartner">
+        </div>
+        <label>E-Mail-Adresse*</label>
+        <input type="email" name="email" required>
+        <label>Passwort*</label>
+        <input type="password" name="passwort" required minlength="6" autocomplete="new-password">
+        <button type="submit" class="register-btn">Registrieren</button>
+        <p class="login-link">
+          Bereits registriert? <a href="anmelden.html" id="login-link">Jetzt einloggen</a>
+        </p>
+      </form>
+    </div>
+  </main>
+  <!-- GANZ UNTEN, vor </body> -->
+  <script src="../JS/registrieren.js"></script>
+</body>
+</html>

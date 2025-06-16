@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anmelden | CARPRO</title>
+  <link rel="stylesheet" href="../CSS/anmelden.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+    </div>
+  </header>
+
+  <main>
+    <div class="login-container">
+      <form id="login-form" autocomplete="off">
+        <h2>Login</h2>
+        <label for="email">E-Mail-Adresse</label>
+        <input type="email" id="email" name="email" required>
+        <label for="passwort">Passwort</label>
+        <input type="password" id="passwort" name="passwort" required>
+        <button type="submit" class="login-btn">Anmelden</button>
+        <p class="register-hint">
+          Noch kein Konto?
+          <a href="registrieren.html" id="register-link">Jetzt registrieren</a>
+        </p>
+      </form>
+    </div>
+  </main>
+  <script src="../JS/anmelden.js"></script>
+</body>
+</html>

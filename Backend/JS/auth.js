@@ -1,30 +1,72 @@
-/**
- * Handles user authentication for Carpro
- */
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const db = require('./datenbank'); // Im selben Ordner
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+// REGISTRIERUNG
+router.post("/registrieren", async (req, res) => {
+  console.log("Registrierungs-Request erhalten:", req.body); // <-- Debug-Ausgabe!
 
-    // Kundentyp aus Dropdown
-    const customerType = document.getElementById('customerType').value;
+  const { kundentyp, name, firma, ustid, ansprechpartner, email, passwort } = req.body;
 
-    // Validierung: Wurde ein Kundentyp gewählt?
-    if (!customerType) {
-        alert("Bitte wählen Sie einen Kundentyp aus.");
-        return;
+  try {
+    // Prüfen, ob E-Mail schon existiert
+    const check = await db.query("SELECT id FROM benutzer WHERE email = $1", [email]);
+    if (check.rowCount > 0) {
+      return res.status(400).json({ error: "E-Mail ist bereits vergeben." });
     }
 
-    // Hier würde normalerweise eine API-Anfrage stehen
-    console.log(`Login attempt with: ${username}, Kundentyp: ${customerType}`);
+    const hash = await bcrypt.hash(passwort, 12);
 
-    // Optional: Kundentyp lokal speichern (z.B. für Filterseite)
-    localStorage.setItem('customerType', customerType);
+    await db.query(
+      `INSERT INTO benutzer (kundentyp, name, firma, ustid, ansprechpartner, email, passwort)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      [
+        kundentyp || "privat",
+        name || null,
+        firma || null,
+        ustid || null,
+        ansprechpartner || null,
+        email,
+        hash
+      ]
+    );
 
-    // Demo: Weiterleitung nach 1 Sekunde
-    setTimeout(() => {
-        window.location.href = '../HTML/filterseite.html';
-    }, 1000);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Fehler bei Registrierung:", err); // Optional: Noch eine Fehlerausgabe
+    res.status(500).json({ error: "Serverfehler: " + err.message });
+  }
 });
+
+// LOGIN
+router.post("/anmelden", async (req, res) => {
+  const { email, passwort } = req.body;
+
+  try {
+    const result = await db.query("SELECT * FROM benutzer WHERE email = $1", [email]);
+    if (result.rowCount === 0) {
+      return res.status(400).json({ error: "E-Mail oder Passwort falsch!" });
+    }
+    const user = result.rows[0];
+    const match = await bcrypt.compare(passwort, user.passwort);
+    if (!match) {
+      return res.status(400).json({ error: "E-Mail oder Passwort falsch!" });
+    }
+    res.json({
+      success: true,
+      user: {
+        id: user.id,
+        email: user.email,
+        kundentyp: user.kundentyp,
+        name: user.name,
+        firma: user.firma
+      }
+    });
+  } catch (err) {
+    console.error("Fehler bei Anmeldung:", err);
+    res.status(500).json({ error: "Serverfehler: " + err.message });
+  }
+});
+
+module.exports = router;

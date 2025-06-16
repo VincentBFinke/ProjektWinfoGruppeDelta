@@ -1,110 +1,508 @@
-:root {
-  --primary-color: #d93030;
-  --text-dark: #333;
-  --background: #f5f5f5;
-}
-
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--background);
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  color: #1a1a1a;
+  scroll-behavior: smooth;
 }
 
-header {
+/* ====================== HEADER ====================== */
+.main-header {
+  background-color: #d93030;
+  color: #fff;
+  width: 100vw;
+  margin: 0;
+  box-shadow: 0 1px 8px rgba(50,50,80,0.06);
+  padding: 0;
+}
+.header-center {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  background: white;
-  border-bottom: 1px solid #ddd;
+  justify-content: center;
+  gap: 40px;
+  padding: 12px 0 12px 0;
 }
-
 .logo {
   height: 60px;
+  margin-right: 35px;
+  display: block;
+  object-fit: contain;
 }
-
-nav a {
+.nav-center {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.nav-center a {
+  color: #fff;
   text-decoration: none;
-  color: var(--primary-color);
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.13);
+  padding: 10px 22px;
+  border-radius: 13px;
+  transition: all 0.18s;
+  font-size: 1.08rem;
+  letter-spacing: 0.01em;
+}
+.nav-center a:hover, .nav-center a.active {
+  background: #fff;
+  color: #d93030;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+}
+.nav-center i { margin-right: 7px; }
+
+/* ====================== MODALS ====================== */
+.modal-bg {
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(45,54,80,0.36);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.18s;
+}
+.modal-content {
+  background: #fff;
+  padding: 38px 28px 22px 28px;
+  border-radius: 16px;
+  min-width: 330px;
+  box-shadow: 0 8px 40px rgba(50, 50, 80, 0.13);
+  position: relative;
+  max-width: 94vw;
+}
+.close-modal {
+  position: absolute;
+  top: 13px; right: 19px;
+  font-size: 1.7rem;
+  color: #d93030;
+  cursor: pointer;
   font-weight: bold;
 }
+.modal-content h2 {
+  margin-top: 0; color: #d93030; text-align: center; font-size: 1.45rem;
+}
+#login-form label {
+  display: block; margin-bottom: 6px; margin-top: 15px; font-weight: 500;
+}
+#login-form input[type="email"],
+#login-form input[type="password"] {
+  width: 100%; padding: 9px 10px; font-size: 1.04rem;
+  border: 1.5px solid #ccd8e2; border-radius: 7px;
+  background: #f5f8ff; margin-bottom: 5px;
+  transition: border 0.15s;
+}
+#login-form input:focus { border-color: #d93030; outline: none; }
+.login-btn {
+  width: 100%; margin: 18px 0 0 0;
+  background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
+  color: #fff; font-size: 1.12rem;
+  border: none; border-radius: 8px; padding: 12px 0;
+  font-weight: 600; box-shadow: 0 2px 10px rgba(0, 112, 243, 0.07);
+  cursor: pointer; transition: background 0.23s;
+  letter-spacing: 0.01em;
+}
+.login-btn:hover { background: linear-gradient(90deg, #0050b3 0%, #002244 100%); }
+.register-hint {
+  margin-top: 16px; text-align: center; font-size: 0.98rem;
+}
+.register-hint a {
+  color: #d93030; text-decoration: none; font-weight: 600;
+  transition: color 0.18s;
+}
+.register-hint a:hover { color: #003366; }
 
-.detail-layout {
+/* ============ Reservierungs-Modal =========== */
+.reservierungs-row {
   display: flex;
-  max-width: 1200px;
-  margin: 40px auto;
-  gap: 50px;
-  padding: 0 40px;
+  gap: 13px;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-bottom: 16px;
 }
-
-.image-section {
-  flex: 1;
+.reservierungs-row label,
+.reservierungs-row input {
+  margin-bottom: 0;
+  min-width: unset;
+  width: auto;
+  flex: 0 1 auto;
 }
-
-.image-section img#mainImage {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
+.reservierungs-row input[type="text"],
+.reservierungs-row input[type="email"],
+.reservierungs-row input[type="date"],
+.reservierungs-row input[type="time"] {
+  border: 1.2px solid #a3b3cd;
   border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.thumbnail-container {
-  display: flex;
-  gap: 10px;
-}
-
-.thumbnail {
-  width: 70px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 5px;
-  cursor: pointer;
-  opacity: 0.6;
-  transition: 0.2s;
-}
-
-.thumbnail:hover,
-.thumbnail.active {
-  opacity: 1;
-  border: 2px solid var(--primary-color);
-}
-
-.info-section {
-  flex: 1;
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.info-section h1 {
-  margin-top: 0;
-}
-
-.price {
-  font-size: 1.6rem;
-  color: var(--primary-color);
-  margin: 10px 0;
-}
-
-.details {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.details li {
-  margin-bottom: 8px;
-  color: #555;
-}
-
-.btn-kontakt {
-  padding: 10px 20px;
   font-size: 1rem;
-  background-color: var(--primary-color);
-  color: white;
+  padding: 8px 9px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s;
+  min-width: 120px;
+}
+.reservierungs-row input:focus {
+  border-color: #d93030;
+}
+
+#reservieren-form-btn {
+  background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
+  color: #fff;
+  font-size: 1.09rem;
   border: none;
-  border-radius: 30px;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 8px;
+  box-shadow: 0 2px 10px rgba(0, 112, 243, 0.07);
   cursor: pointer;
+  transition: background 0.18s;
+}
+#reservieren-form-btn:hover {
+  background: linear-gradient(90deg, #0050b3 0%, #002244 100%);
+}
+
+/* =========== Kauf-Modal =========== */
+.kauf-row {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.kauf-row label,
+.kauf-row input {
+  margin-bottom: 0;
+  min-width: unset;
+  width: auto;
+  flex: 0 1 auto;
+}
+.kauf-row input[type="text"],
+.kauf-row input[type="email"],
+.kauf-row input[type="tel"] {
+  border: 1.2px solid #a3b3cd;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 8px 9px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.18s;
+  min-width: 120px;
+}
+.kauf-row input:focus {
+  border-color: #d93030;
+}
+
+#kaufen-form-btn {
+  background: linear-gradient(90deg, #3ab54a 0%, #175c2a 100%);
+  color: #fff;
+  font-size: 1.09rem;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  font-weight: 600;
+  width: 100%;
+  margin-top: 8px;
+  box-shadow: 0 2px 10px rgba(50, 200, 80, 0.08);
+  cursor: pointer;
+  transition: background 0.18s;
+}
+#kaufen-form-btn:hover {
+  background: linear-gradient(90deg, #258b34 0%, #14551e 100%);
+}
+
+/* ========== Angebot-Inhalte =========== */
+main {
+  min-height: 100vh;
+  background: #f9f9f9;
+  padding: 50px 0 60px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.angebot-container {
+  width: 90vw;
+  max-width: 1320px;
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 24px;
+  box-shadow: 0 6px 32px rgba(50,50,80,0.07);
+  padding: 50px 35px;
+}
+.angebot-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 44px;
+  align-items: flex-start;
+}
+.angebot-image-box {
+  background: #ffecec;
+  border-radius: 18px;
+  padding: 26px 24px 18px 24px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  min-width: 330px;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.angebot-image-box img {
+  width: 310px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.09);
+  background: #fff;
+}
+.reserviert-badge {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  background: #ff3636;
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 16px;
+  font-size: 1.1rem;
+  z-index: 11;
+  box-shadow: 0 1px 6px rgba(200,20,20,0.14);
+  letter-spacing: 0.02em;
+}
+.verkauft-badge {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  background: #222;
+  color: #fff;
+  font-weight: 800;
+  padding: 7px 19px;
+  border-radius: 18px;
+  font-size: 1.1rem;
+  z-index: 12;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.14);
+  letter-spacing: 0.04em;
+}
+.reserviert-badge + .verkauft-badge {
+  left: 22px;
+  top: 55px;
+}
+.image-nav {
+  display: flex;
+  gap: 22px;
+  margin: 18px auto 0 auto;
+}
+.image-btn {
+  background: #d93030;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  font-size: 1.35rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(50,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s;
+}
+.image-btn:hover { background: #b51e1e; }
+
+.angebot-details-scrollbox {
+  flex: 1 1 0;
+  min-width: 360px;
+  max-height: 550px;
+  overflow-y: auto;
+  padding-right: 20px;
+  background: transparent;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.angebot-details-scrollbox::-webkit-scrollbar {
+  width: 10px;
+}
+.angebot-details-scrollbox::-webkit-scrollbar-thumb {
+  background: #d93030;
+  border-radius: 8px;
+}
+.angebot-details-scrollbox::-webkit-scrollbar-track {
+  background: #fafafa;
+}
+.angebot-details {
+  min-width: 0;
+  margin-top: 0;
+  width: 100%;
+}
+
+/* ============ Buttons Bereich ============ */
+.action-buttons {
+  display: flex;
+  gap: 18px;
+  margin-top: 28px;
+}
+@media (max-width: 600px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Reservieren und Kaufen-Button */
+.reservieren-btn, .kaufen-btn {
+  display: block;
+  background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
+  color: #fff;
+  font-size: 1.13rem;
+  border: none;
+  border-radius: 10px;
+  padding: 17px 36px;
+  font-weight: 600;
+  box-shadow: 0 2px 18px rgba(0, 112, 243, 0.08);
+  cursor: pointer;
+  transition: background 0.23s;
+  letter-spacing: 0.02em;
+  text-align: center;
+  width: 100%;
+}
+.reservieren-btn i, .kaufen-btn i {
+  margin-right: 10px;
+  font-size: 1.23em;
+}
+.reservieren-btn:hover, .kaufen-btn:hover {
+  background: linear-gradient(90deg, #0050b3 0%, #002244 100%);
+  box-shadow: 0 6px 18px rgba(0, 112, 243, 0.12);
+}
+.kaufen-btn {
+  background: linear-gradient(90deg, #3ab54a 0%, #175c2a 100%);
+}
+.kaufen-btn:hover {
+  background: linear-gradient(90deg, #258b34 0%, #14551e 100%);
+}
+
+/* ==================== Details etc. ==================== */
+.zurueck-btn {
+  display: inline-block;
+  background: #d93030;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 18px 10px 14px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  margin-bottom: 12px;
+  margin-top: 0;
+  transition: background 0.18s;
+  z-index: 2;
+}
+.zurueck-btn:hover { background: #a90d0d; }
+
+#titel {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+.preis {
+  color: #d93030;
+  font-weight: 700;
+  font-size: 2.0rem;
+  margin-bottom: 18px;
+  margin-top: 2px;
+}
+.abschnitt {
+  margin-bottom: 32px;
+}
+.abschnitt h2 {
+  font-size: 1.25rem;
+  color: #d93030;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 18px;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid #ffdede;
+  display: inline-block;
+  padding-bottom: 2px;
+}
+#beschreibung {
+  font-size: 1.06rem;
+  color: #222;
+  margin-top: 3px;
+}
+#technische-daten {
+  width: 100%;
+  background: #fff6f6;
+  border-radius: 8px;
+  border-collapse: collapse;
+  font-size: 1.02rem;
+  margin-top: 10px;
+  margin-bottom: 7px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+#technische-daten td {
+  padding: 7px 16px 7px 9px;
+}
+#technische-daten .td-key {
+  color: #d93030;
+  font-weight: 600;
+  width: 180px;
+  white-space: nowrap;
+}
+.ausstattung-list {
+  columns: 2 240px;
+  column-gap: 34px;
+  padding-left: 16px;
+  font-size: 1.07rem;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  list-style: disc inside;
+}
+.ausstattung-list li {
+  margin-bottom: 6px;
+  color: #232526;
+  font-weight: 400;
+  break-inside: avoid;
+}
+
+/* ==================== Responsive Anpassungen ==================== */
+@media (max-width: 1100px) {
+  .angebot-content { flex-direction: column; align-items: center; }
+  .angebot-details-scrollbox { min-width: 0; margin-top: 28px; width: 98%; max-height: 400px; }
+  .angebot-image-box { margin: 0 auto; }
+}
+@media (max-width: 750px) {
+  .angebot-container { padding: 17px 4px 24px 4px; }
+  .angebot-content { gap: 20px; }
+  .angebot-image-box { min-width: 0; max-width: 98vw; padding: 14px 2vw 10px 2vw;}
+  .angebot-image-box img { width: 92vw; max-width: 420px; height: 40vw; min-height: 170px;}
+  .angebot-details-scrollbox { width: 100%; max-height: 340px; }
+  #titel { font-size: 1.18rem; }
+  .preis { font-size: 1.15rem; }
+  .abschnitt h2 { font-size: 1.05rem; }
+  .reservierungs-row,
+  .kauf-row,
+  .action-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+  }
+}
+@media (max-width: 550px) {
+  .modal-content { min-width: 0; width: 98vw; padding: 13px 2vw 15px 2vw; }
+  .reservierungs-row,
+  .kauf-row,
+  .action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+  }
+  .angebot-container { padding: 7px 0 8px 0; }
 }
