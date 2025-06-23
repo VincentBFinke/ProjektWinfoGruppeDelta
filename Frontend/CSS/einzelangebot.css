@@ -68,9 +68,13 @@ body {
   padding: 38px 28px 22px 28px;
   border-radius: 16px;
   min-width: 330px;
+  max-width: 94vw;
   box-shadow: 0 8px 40px rgba(50, 50, 80, 0.13);
   position: relative;
-  max-width: 94vw;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .close-modal {
   position: absolute;
@@ -79,10 +83,69 @@ body {
   color: #d93030;
   cursor: pointer;
   font-weight: bold;
+  z-index: 2;
 }
 .modal-content h2 {
   margin-top: 0; color: #d93030; text-align: center; font-size: 1.45rem;
 }
+.modal-content form {
+  margin: 0;
+}
+
+/* Modal Scroll-Lösung für große Inhalte */
+#kaufvertrag-modal .modal-content,
+#kaufvertrag-inhalt {
+  max-height: 82vh;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+#kaufvertrag-inhalt img {
+  max-width: 135px;
+  max-height: 85px;
+  border-radius: 7px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px rgba(120,120,120,0.07);
+}
+#kaufvertrag-inhalt table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 11px;
+  background: #f7f7fa;
+  border-radius: 5px;
+  font-size: 0.97rem;
+}
+#kaufvertrag-inhalt th, #kaufvertrag-inhalt td {
+  text-align: left;
+  padding: 5px 9px;
+  border-bottom: 1px solid #eee;
+}
+#kaufvertrag-inhalt th {
+  color: #d93030;
+  font-weight: 600;
+  width: 170px;
+}
+#kaufvertrag-inhalt ul {
+  margin: 4px 0 7px 22px;
+}
+.hinweis {
+  background: #ffeaea;
+  border-radius: 8px;
+  padding: 10px 13px;
+  color: #c42424;
+  margin-top: 10px;
+  font-size: 1.04rem;
+}
+
+.vertragsnummer {
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #003366;
+  margin: 4px 0 10px 0;
+}
+
+/* ============ Login/Registrierung Modal ============ */
 #login-form label {
   display: block; margin-bottom: 6px; margin-top: 15px; font-weight: 500;
 }
@@ -145,7 +208,6 @@ body {
 .reservierungs-row input:focus {
   border-color: #d93030;
 }
-
 #reservieren-form-btn {
   background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
   color: #fff;
@@ -167,18 +229,14 @@ body {
 /* =========== Kauf-Modal =========== */
 .kauf-row {
   display: flex;
-  gap: 13px;
-  align-items: center;
-  flex-wrap: nowrap;
-  justify-content: center;
-  margin-bottom: 16px;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
 }
-.kauf-row label,
-.kauf-row input {
-  margin-bottom: 0;
-  min-width: unset;
-  width: auto;
-  flex: 0 1 auto;
+.kauf-row label {
+  font-weight: 500;
+  margin-bottom: 2px;
+  margin-top: 8px;
 }
 .kauf-row input[type="text"],
 .kauf-row input[type="email"],
@@ -190,27 +248,28 @@ body {
   background: #fff;
   outline: none;
   transition: border-color 0.18s;
-  min-width: 120px;
+  width: 100%;
 }
 .kauf-row input:focus {
   border-color: #d93030;
 }
 
-#kaufen-form-btn {
+#kontaktdaten-uebermitteln-btn {
   background: linear-gradient(90deg, #3ab54a 0%, #175c2a 100%);
   color: #fff;
-  font-size: 1.09rem;
+  font-size: 1.13rem;
   border: none;
-  border-radius: 8px;
-  padding: 12px 0;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 14px 0;
+  font-weight: 700;
   width: 100%;
-  margin-top: 8px;
+  margin-top: 18px;
+  letter-spacing: 0.01em;
   box-shadow: 0 2px 10px rgba(50, 200, 80, 0.08);
   cursor: pointer;
   transition: background 0.18s;
 }
-#kaufen-form-btn:hover {
+#kontaktdaten-uebermitteln-btn:hover {
   background: linear-gradient(90deg, #258b34 0%, #14551e 100%);
 }
 

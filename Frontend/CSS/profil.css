@@ -1,0 +1,286 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f9f9f9;
+    color: #1a1a1a;
+    scroll-behavior: smooth;
+  }
+  
+  /* ====================== HEADER ====================== */
+  .main-header {
+    background-color: #d93030;
+    color: #fff;
+    width: 100vw;
+    margin: 0;
+    box-shadow: 0 1px 8px rgba(50,50,80,0.06);
+    padding: 0;
+  }
+  
+  .header-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 12px 0 12px 0;
+  }
+  
+  .logo {
+    height: 60px;
+    margin-right: 35px;
+    display: block;
+    object-fit: contain;
+  }
+  
+  .nav-center {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  
+  .nav-center a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.13);
+    padding: 10px 22px;
+    border-radius: 13px;
+    transition: all 0.18s;
+    font-size: 1.08rem;
+    letter-spacing: 0.01em;
+  }
+  .nav-center a:hover, .nav-center a.active {
+    background: #fff;
+    color: #d93030;
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+  }
+  .nav-center i { margin-right: 7px; }
+  
+  /* ==================== MODAL LOGIN ==================== */
+  .modal-bg {
+    position: fixed;
+    z-index: 2000;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(45,54,80,0.36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.18s;
+  }
+  .modal-content {
+    background: #fff;
+    padding: 38px 28px 22px 28px;
+    border-radius: 16px;
+    min-width: 330px;
+    box-shadow: 0 8px 40px rgba(50, 50, 80, 0.13);
+    position: relative;
+    max-width: 94vw;
+  }
+  .close-modal {
+    position: absolute;
+    top: 13px; right: 19px;
+    font-size: 1.7rem;
+    color: #d93030;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .modal-content h2 {
+    margin-top: 0; color: #d93030; text-align: center; font-size: 1.45rem;
+  }
+  #login-form label {
+    display: block; margin-bottom: 6px; margin-top: 15px; font-weight: 500;
+  }
+  #login-form input[type="email"],
+  #login-form input[type="password"] {
+    width: 100%; padding: 9px 10px; font-size: 1.04rem;
+    border: 1.5px solid #ccd8e2; border-radius: 7px;
+    background: #f5f8ff; margin-bottom: 5px;
+    transition: border 0.15s;
+  }
+  #login-form input:focus { border-color: #d93030; outline: none; }
+  .login-btn {
+    width: 100%; margin: 18px 0 0 0;
+    background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
+    color: #fff; font-size: 1.12rem;
+    border: none; border-radius: 8px; padding: 12px 0;
+    font-weight: 600; box-shadow: 0 2px 10px rgba(0, 112, 243, 0.07);
+    cursor: pointer; transition: background 0.23s;
+    letter-spacing: 0.01em;
+  }
+  .login-btn:hover { background: linear-gradient(90deg, #0050b3 0%, #002244 100%); }
+  .register-hint {
+    margin-top: 16px; text-align: center; font-size: 0.98rem;
+  }
+  .register-hint a {
+    color: #d93030; text-decoration: none; font-weight: 600;
+    transition: color 0.18s;
+  }
+  .register-hint a:hover { color: #003366; }
+  
+  /* ==================== PROFIL-BEREICH ==================== */
+  .profil-section {
+    max-width: 900px;
+    margin: 50px auto 0 auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 4px 22px rgba(50,50,80,0.08);
+    padding: 40px 32px 60px 32px;
+  }
+  .profil-section h1 {
+    margin-top: 0;
+    color: #d93030;
+    font-size: 2.0rem;
+  }
+  .profil-section h2 {
+    margin: 38px 0 14px 0;
+    color: #003366;
+    font-size: 1.35rem;
+  }
+  
+  .profil-info {
+    margin-bottom: 28px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    padding: 16px 18px;
+    box-shadow: 0 2px 10px rgba(200,30,30,0.04);
+    font-size: 1.09rem;
+  }
+  .profil-info i {
+    color: #003366;
+    margin-right: 10px;
+  }
+  
+  .keine-vertraege {
+    color: #b22222;
+    font-size: 1.1rem;
+    margin: 26px 0 0 0;
+    text-align: center;
+  }
+  
+  /* Kaufverträge Grid */
+  .kaufvertraege-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+    margin-top: 30px;
+  }
+  
+  @media (max-width: 800px) {
+    .kaufvertraege-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .profil-section {
+      padding: 22px 5vw 40px 5vw;
+    }
+  }
+  
+  /* Kaufvertrag Card */
+  .kaufvertrag-card {
+    background: #f7f7f7;
+    border: 2px solid #d93030;
+    border-radius: 13px;
+    box-shadow: 0 2px 12px rgba(200,30,30,0.07);
+    padding: 28px 20px 22px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.08rem;
+    position: relative;
+  }
+  
+  .kv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+  }
+  
+  .kv-nr {
+    font-weight: 700;
+    color: #d93030;
+    font-size: 1.04rem;
+  }
+  .kv-datum {
+    font-size: 0.97rem;
+    color: #555;
+  }
+  
+  /* PDF Button */
+  .pdf-btn {
+    margin-top: 10px;
+    padding: 8px 17px;
+    background: linear-gradient(90deg, #0070f3 0%, #003366 100%);
+    color: #fff;
+    font-size: 1.07rem;
+    border: none;
+    border-radius: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s;
+    letter-spacing: 0.01em;
+    box-shadow: 0 1px 6px rgba(0,112,243,0.10);
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .pdf-btn i {
+    font-size: 1.11em;
+  }
+  .pdf-btn:hover {
+    background: linear-gradient(90deg, #0050b3 0%, #002244 100%);
+  }
+  
+  /* ==================== FOOTER ==================== */
+  .main-footer {
+    background-color: #d93030;
+    color: #fff;
+    padding: 32px 0 20px 0;
+    margin-top: 50px;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  .footer-logo img {
+    height: 44px;
+    width: auto;
+    margin-bottom: 10px;
+    filter: drop-shadow(0 1px 6px rgba(0,0,0,0.12));
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  
+  .footer-links a:hover {
+    background: rgba(255,255,255,0.18);
+  }
+  
+  .footer-copy {
+    font-size: 0.96rem;
+    color: #ffeaea;
+    margin-top: 8px;
+    text-align: center;
+  }
+  

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profil – CARPRO</title>
+  <link rel="stylesheet" href="../CSS/profil.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { background: #f7f7f7; }
+    .profil-section {
+      background: #fff;
+      max-width: 720px;
+      margin: 40px auto 40px auto;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.10);
+      padding: 40px 40px 28px 40px;
+    }
+    .profil-info { margin-bottom: 28px; }
+    .kaufvertrag-card, .reservierung-card {
+      background: #fcfcff;
+      border: 2px solid #d32d2d;
+      border-radius: 15px;
+      margin: 18px 0 22px 0;
+      padding: 22px 20px 18px 20px;
+      box-shadow: 0 2px 6px rgba(30,0,0,0.03);
+    }
+    .kaufvertrag-card { border-color: #d32d2d; }
+    .reservierung-card { border-color: #184cd5; }
+    .kv-header, .rv-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+    .rv-header i { color: #184cd5; margin-right: 6px; }
+    .reservierungs-status {
+      display: inline-block;
+      padding: 1px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      margin-left: 12px;
+      background: #eee;
+      color: #184cd5;
+      letter-spacing: .5px;
+    }
+    .rv-meta { color: #444; margin-bottom: 6px; font-size: 14px;}
+    .storno-btn {
+      background: #e54242;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 18px;
+      font-weight: 600;
+      margin-top: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .storno-btn:hover { background: #b31515; }
+    .pdf-btn {
+      background: #1a3579;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 7px 22px;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background 0.2s;
+      display: flex; align-items: center; gap: 7px;
+    }
+    .pdf-btn:hover { background: #1041b1; }
+    .keine-vertraege, .keine-reservierungen {
+      color: #c22;
+      text-align: center;
+      font-size: 15px;
+      margin: 10px 0 16px 0;
+    }
+    @media (max-width: 800px) {
+      .profil-section { max-width: 96vw; padding: 16px; }
+      .kaufvertrag-card, .reservierung-card { padding: 14px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center"></nav>
+    </div>
+  </header>
+
+  <!-- Login-Modal -->
+  <div id="login-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">E-Mail-Adresse</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-passwort">Passwort</label>
+        <input type="password" id="login-passwort" name="passwort" required>
+        <button type="submit" class="login-btn">Anmelden</button>
+      </form>
+      <p class="register-hint">
+        Noch kein Konto?
+        <a href="registrieren.html" id="go-register">Jetzt registrieren</a>
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <section class="profil-section">
+      <h1>Mein Profil</h1>
+      <div class="profil-info" id="profil-info">
+        <!-- Benutzerinfos dynamisch -->
+      </div>
+      <h2>Meine Kaufverträge</h2>
+      <div id="meine-kaufvertraege"></div>
+
+      <h2 style="margin-top:40px;">Meine Reservierungen</h2>
+      <div id="meine-reservierungen"></div>
+    </section>
+  </main>
+
+  <footer class="main-footer" style="margin-top:40px;">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/logo.png" alt="CARPRO Logo" />
+      </div>
+      <div class="footer-links">
+        <a href="startseite.html">Startseite</a>
+        <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+        <a href="#">Services</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2025 CARPRO Autovermietung &ndash; Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header-Logik (wie auf Startseite)
+    function updateHeaderUser() {
+      const nav = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link" class="active"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          updateHeaderUser();
+        };
+      } else {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
+
+    // Modal schließen
+    document.getElementById("close-login").onclick = () => {
+      document.getElementById("login-modal").style.display = "none";
+    };
+    document.getElementById("login-modal").onclick = (e) => {
+      if (e.target === document.getElementById("login-modal")) {
+        document.getElementById("login-modal").style.display = "none";
+      }
+    };
+
+    // Login-Formular abfangen
+    document.getElementById("login-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const passwort = document.getElementById("login-passwort").value;
+      try {
+        const res = await fetch("http://localhost:3000/api/auth/anmelden", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, passwort }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          alert(data.message || "Login fehlgeschlagen!");
+          return;
+        }
+        localStorage.setItem("userName", data.name || data.firma || email);
+        document.getElementById("login-modal").style.display = "none";
+        updateHeaderUser();
+        window.location.reload();
+      } catch (err) {
+        alert("Serverfehler beim Login.");
+      }
+    };
+
+    // "Jetzt registrieren"
+    document.getElementById("go-register").onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "registrieren.html?redirect=profil.html";
+    };
+
+    // --- Kaufverträge & Benutzerinfos laden ---
+    document.addEventListener("DOMContentLoaded", () => {
+      updateHeaderUser();
+
+      const userEmail = localStorage.getItem("userName");
+      if (!userEmail) return;
+
+      // KAUFVERTRÄGE
+      fetch(`http://localhost:3000/api/kauf?email=${encodeURIComponent(userEmail)}`)
+        .then(res => res.json())
+        .then(response => {
+          // PROFIL-INFOS OBEN
+          let profileInfoHTML = "";
+          if (response.success && response.vertraege.length > 0) {
+            const user = response.vertraege[0];
+            profileInfoHTML = `
+              <div><i class="fa fa-user"></i> <b>Name:</b> ${user.name}</div>
+              <div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${user.email}</div>
+              <div><i class="fa fa-map-marker"></i> <b>Adresse:</b> ${user.adresse}</div>
+              <div><i class="fa fa-phone"></i> <b>Telefon:</b> ${user.telefon}</div>
+            `;
+          } else {
+            profileInfoHTML = `<div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${userEmail}</div>`;
+          }
+          document.getElementById('profil-info').innerHTML = profileInfoHTML;
+
+          // KAUFVERTRÄGE
+          const vertragsDiv = document.getElementById('meine-kaufvertraege');
+          vertragsDiv.innerHTML = "";
+          if (!response.success || !response.vertraege.length) {
+            vertragsDiv.innerHTML = "<div class='keine-vertraege'>Keine Kaufverträge gefunden.</div>";
+            return;
+          }
+          response.vertraege.forEach(kv => {
+            vertragsDiv.innerHTML += `
+              <div class="kaufvertrag-card">
+                <div class="kv-header">
+                  <span class="kv-nr">Vertragsnummer: <b>${kv.vertragsnummer}</b></span>
+                  <span class="kv-datum">${new Date(kv.vertragsdatum).toLocaleDateString('de-DE')}</span>
+                </div>
+                <div><b>Fahrzeug:</b> ${kv.fahrzeuge.hersteller} ${kv.fahrzeuge.modell}</div>
+                <div><b>Preis:</b> ${Number(kv.preis).toLocaleString()} €</div>
+                <button class="pdf-btn" onclick="downloadVertragPDF('${kv.id}')"><i class="fa fa-file-pdf"></i> PDF herunterladen</button>
+              </div>
+            `;
+          });
+        });
+
+      // RESERVIERUNGEN
+      fetch(`http://localhost:3000/api/reservierung?email=${encodeURIComponent(userEmail)}`)
+        .then(res => res.json())
+        .then(response => {
+          const rvDiv = document.getElementById('meine-reservierungen');
+          rvDiv.innerHTML = "";
+          if (!response.success || !response.reservierungen.length) {
+            rvDiv.innerHTML = "<div class='keine-reservierungen'>Keine Reservierungen gefunden.</div>";
+            return;
+          }
+          response.reservierungen.forEach(rv => {
+            // Fallback für Status
+            let status = rv.fahrzeuge?.status || '-';
+            let statusColor = status === 'verkauft' ? '#b31515' : (status === 'reserviert' ? '#1a3579' : '#228c1d');
+            let statusText = status.charAt(0).toUpperCase() + status.slice(1);
+            let reserviertBisTxt = rv.reserviert_bis
+              ? new Date(rv.reserviert_bis).toLocaleDateString('de-DE')
+              : '-';
+            rvDiv.innerHTML += `
+              <div class="reservierung-card">
+                <div class="rv-header">
+                  <i class="fa fa-car"></i>
+                  ${rv.fahrzeuge?.hersteller ?? ''} ${rv.fahrzeuge?.modell ?? ''}
+                  <span style="font-size:14px;color:#333;font-weight:400; margin-left:6px;">
+                    <i class="fa fa-calendar"></i> 
+                    ${rv.wunschtermin ? new Date(rv.wunschtermin).toLocaleDateString('de-DE') : '-'}
+                    ${rv.uhrzeit ? 'um ' + rv.uhrzeit : ''}
+                  </span>
+                  <span class="reservierungs-status" style="background:${statusColor}22;color:${statusColor};border:1.5px solid ${statusColor};">${statusText}</span>
+                </div>
+                <div class="rv-meta"><b>Reserviert bis:</b> ${reserviertBisTxt}</div>
+                <div class="rv-meta"><b>Name:</b> ${rv.name}</div>
+                <div class="rv-meta"><b>E-Mail:</b> ${rv.email}</div>
+                <button class="storno-btn" onclick="storniereReservierung('${rv.id}', '${rv.fahrzeug_id}')"><i class="fa fa-xmark"></i> Reservierung stornieren</button>
+              </div>
+            `;
+          });
+        });
+    });
+
+    function downloadVertragPDF(id) {
+      window.open(`http://localhost:3000/api/kauf/pdf/${id}`);
+    }
+
+    // Stornieren-Handler
+    async function storniereReservierung(resId, fahrzeugId) {
+      if (!confirm("Reservierung wirklich stornieren?")) return;
+      try {
+        const res = await fetch(`http://localhost:3000/api/reservierung/${resId}?fahrzeug_id=${fahrzeugId}`, {
+          method: "DELETE"
+        });
+        const data = await res.json();
+        if (data.success) {
+          alert("Reservierung erfolgreich storniert.");
+          window.location.reload();
+        } else {
+          alert(data.message || "Fehler beim Stornieren.");
+        }
+      } catch (err) {
+        alert("Fehler beim Stornieren.");
+      }
+    }
+  </script>
+</body>
+</html>

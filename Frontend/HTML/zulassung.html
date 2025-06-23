@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zulassungsservice – CARPRO</title>
+  <link rel="stylesheet" href="../CSS/einzelangebot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+    }
+    .main-header {
+      background: #c82333;
+      box-shadow: 0 3px 12px 0 rgba(44,44,44,0.08);
+    }
+    .header-center {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      max-width: 1220px;
+      margin: 0 auto;
+      height: 80px;
+      padding: 0 30px;
+      gap: 34px;
+    }
+    .logo { height: 46px; margin-right: 28px; margin-top: 2px; }
+    .nav-center {
+      display: flex; gap: 18px; flex-wrap: wrap;
+    }
+    .nav-center a {
+      color: #fff; text-decoration: none; font-size: 1.13rem;
+      font-weight: 600; padding: 11px 22px; border-radius: 14px;
+      transition: background 0.15s; background: rgba(255,255,255,0.04);
+    }
+    .nav-center a:hover { background: #fff2; color: #fff; }
+    .steps-zulassung-container {
+      max-width: 1080px;
+      margin: 44px auto 0 auto;
+      margin-bottom: 34px;
+      padding: 0 18px;
+    }
+    .steps-zulassung-header {
+      font-size: 2.1rem; font-weight: 800; color: #1d1d1d;
+      margin-bottom: 14px; letter-spacing: -.5px; line-height: 1.1;
+    }
+    .steps-zulassung-header .steps-underline {
+      border-bottom: 4px solid #c82333;
+      padding-bottom: 4px; display: inline-block;
+    }
+    .steps-zulassung-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+      gap: 32px;
+    }
+    .steps-zulassung-step {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 28px 0 rgba(45,45,45,0.09);
+      padding: 36px 22px 30px 26px;
+      border-left: 7px solid #c82333;
+      min-height: 175px;
+      display: flex; flex-direction: column; justify-content: flex-start;
+    }
+    .steps-zulassung-step .steps-zulassung-number {
+      font-size: 2.1rem; font-weight: 800; color: #c82333;
+      line-height: 1; margin-bottom: 2px; letter-spacing: -.5px;
+    }
+    .steps-zulassung-step h3 {
+      font-size: 1.14rem; font-weight: 700; color: #222; margin: 0 0 7px 0;
+    }
+    .steps-zulassung-step p { color: #444; font-size: 1.01rem; margin: 0; font-weight: 400; }
+    @media (max-width: 730px) {
+      .steps-zulassung-step { padding: 24px 11px 18px 16px; }
+      .steps-zulassung-header { font-size: 1.3rem; }
+      .steps-zulassung-step .steps-zulassung-number { font-size: 1.3rem; }
+      .steps-zulassung-step h3 { font-size: 1rem; }
+      .steps-zulassung-step { min-height: 120px; }
+    }
+    .zulassung-container {
+      max-width: 820px;
+      margin: 42px auto 0 auto;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 6px 36px 0 rgba(45,45,45,0.12);
+      padding: 44px 36px 32px 36px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .zulassung-header { text-align: center; margin-bottom: 18px; }
+    .zulassung-header h1 {
+      color: #c82333;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    .zulassung-header p {
+      font-size: 1.12rem; color: #4c4c4c; margin-bottom: 0;
+    }
+    .zulassung-form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+    .zulassung-form-group {
+      flex: 1 1 240px;
+      min-width: 180px;
+      display: flex; flex-direction: column;
+    }
+    .zulassung-form-group label {
+      font-weight: 600; color: #333; margin-bottom: 6px;
+    }
+    .zulassung-form-group input,
+    .zulassung-form-group select,
+    .zulassung-form-group textarea {
+      padding: 9px 12px; border: 1.5px solid #ececec;
+      border-radius: 8px; font-size: 1rem; margin-bottom: 7px;
+      background: #f8f8f8; transition: border .18s;
+    }
+    .zulassung-form-group input:focus,
+    .zulassung-form-group select:focus,
+    .zulassung-form-group textarea:focus {
+      border: 1.5px solid #c82333; background: #fff;
+    }
+    .zulassung-form-group textarea { min-height: 48px; resize: vertical; }
+    .zulassung-btn {
+      background: #c82333; color: #fff; font-weight: 700; border: none;
+      border-radius: 13px; font-size: 1.2rem; padding: 15px 0; margin-top: 22px;
+      cursor: pointer; width: 100%;
+      transition: background .2s;
+      box-shadow: 0 4px 18px 0 rgba(200,35,51,0.08);
+    }
+    .zulassung-btn:hover { background: #a5001a; }
+    @media (max-width: 880px) {
+      .zulassung-container {
+        padding: 6vw 3vw 3vw 3vw;
+        max-width: 99vw;
+      }
+      .zulassung-form-row { flex-direction: column; gap: 0; }
+    }
+    /* Modal */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(20,25,38,0.65);
+      display: flex; justify-content: center; align-items: center; z-index: 1002;
+    }
+    .modal-box {
+      background: #fff; border-radius: 20px; padding: 40px 30px 32px 30px;
+      text-align: center; max-width: 380px; width: 90vw;
+      box-shadow: 0 7px 44px 0 rgba(25,28,50,0.15);
+      animation: popIn 0.19s cubic-bezier(.7,-0.1,.9,1.5);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.7);}
+      95% { transform: scale(1.05);}
+      100% { transform: scale(1);}
+    }
+    .modal-icon {
+      font-size: 3.8rem;
+      color: #228741;
+      margin-bottom: 8px;
+    }
+    .modal-btn {
+      margin-top: 20px; background: #c82333; color: #fff;
+      font-size: 1.1rem; font-weight: 700; padding: 12px 28px; border: none;
+      border-radius: 13px; cursor: pointer;
+      box-shadow: 0 4px 14px 0 rgba(200,35,51,0.10);
+      transition: background .18s;
+    }
+    .modal-btn:hover { background: #a5001a; }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="header-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center"></nav>
+    </div>
+  </header>
+
+  <!-- Schritt-Anleitung -->
+  <section class="steps-zulassung-container">
+    <div class="steps-zulassung-header">
+      <span class="steps-underline">Unser Zulassungsservice – So einfach geht's</span>
+    </div>
+    <div class="steps-zulassung-grid">
+      <div class="steps-zulassung-step">
+        <div class="steps-zulassung-number">01</div>
+        <h3>Auftrag erteilen</h3>
+        <p>Sie beauftragen uns bequem online oder persönlich mit der Zulassung Ihres Fahrzeugs.</p>
+      </div>
+      <div class="steps-zulassung-step">
+        <div class="steps-zulassung-number">02</div>
+        <h3>Unterlagen einreichen</h3>
+        <p>Übermitteln Sie uns alle erforderlichen Dokumente. Sie erhalten eine Checkliste von uns.</p>
+      </div>
+      <div class="steps-zulassung-step">
+        <div class="steps-zulassung-number">03</div>
+        <h3>Bearbeitung durch CARPRO</h3>
+        <p>Wir erledigen alle Behördengänge und melden Ihr Fahrzeug an.</p>
+      </div>
+      <div class="steps-zulassung-step">
+        <div class="steps-zulassung-number">04</div>
+        <h3>Abholung oder Übergabe</h3>
+        <p>Nach Abschluss erhalten Sie Ihre Unterlagen und das zugelassene Fahrzeug.</p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="zulassung-container">
+      <div class="zulassung-header">
+        <h1>Zulassungsservice</h1>
+        <p>
+          Wir übernehmen die komplette Zulassung für Ihr neues Fahrzeug – schnell, zuverlässig und stressfrei.<br>
+          <span style="color:#c82333;font-weight:600;">Konzentrieren Sie sich auf das Wesentliche, wir erledigen den Rest!</span>
+        </p>
+      </div>
+      <form id="zulassung-form" autocomplete="off">
+        <div class="zulassung-form-row">
+          <div class="zulassung-form-group">
+            <label for="vorname">Vorname*</label>
+            <input type="text" id="vorname" name="vorname" required>
+          </div>
+          <div class="zulassung-form-group">
+            <label for="nachname">Nachname*</label>
+            <input type="text" id="nachname" name="nachname" required>
+          </div>
+        </div>
+        <div class="zulassung-form-row">
+          <div class="zulassung-form-group">
+            <label for="email">E-Mail*</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="zulassung-form-group">
+            <label for="telefon">Telefon</label>
+            <input type="tel" id="telefon" name="telefon">
+          </div>
+        </div>
+        <div class="zulassung-form-row">
+          <div class="zulassung-form-group">
+            <label for="fahrzeugmodell">Fahrzeugmodell*</label>
+            <input type="text" id="fahrzeugmodell" name="fahrzeugmodell" required>
+          </div>
+          <div class="zulassung-form-group">
+            <label for="fin">Fahrzeug-Identifizierungsnummer (FIN)*</label>
+            <input type="text" id="fin" name="fin" required maxlength="24">
+          </div>
+        </div>
+        <div class="zulassung-form-row">
+          <div class="zulassung-form-group">
+            <label for="wunschkennzeichen">Wunschkennzeichen</label>
+            <input type="text" id="wunschkennzeichen" name="wunschkennzeichen">
+          </div>
+          <div class="zulassung-form-group">
+            <label for="zulassungsart">Zulassungsart*</label>
+            <select id="zulassungsart" name="zulassungsart" required>
+              <option value="">Bitte wählen</option>
+              <option>Neuzulassung</option>
+              <option>Ummeldung</option>
+              <option>Abmeldung</option>
+              <option>Wiederzulassung</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="zulassung-btn">Zulassungsservice anfragen</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Erfolgs-Modal -->
+  <div id="zulassung-success-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <div class="modal-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h2>Ihre Anfrage wurde erfolgreich übermittelt!</h2>
+      <p>
+        Herzlichen Dank für Ihr Vertrauen.<br>
+        Wir haben Ihre Angaben erhalten und prüfen diese umgehend.<br>
+        Ein Mitarbeiter wird sich bei Ihnen melden.
+      </p>
+      <button id="close-success-modal" class="modal-btn">Schließen</button>
+    </div>
+  </div>
+
+  <script>
+    // Header wie gewohnt
+    function updateHeaderUser() {
+      const navCenter = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          updateHeaderUser();
+        };
+      } else {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
+    document.addEventListener("DOMContentLoaded", updateHeaderUser);
+
+    // Modal-Logik
+    const zulassungSuccessModal = document.getElementById('zulassung-success-modal');
+    const closeSuccessModalBtn = document.getElementById('close-success-modal');
+    closeSuccessModalBtn.onclick = () => {
+      zulassungSuccessModal.style.display = 'none';
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+    zulassungSuccessModal.onclick = (e) => {
+      if (e.target === zulassungSuccessModal) zulassungSuccessModal.style.display = 'none';
+    };
+
+    // Formular absenden mit JSON!
+    document.getElementById("zulassung-form").onsubmit = async function(e) {
+      e.preventDefault();
+      const data = {
+        vorname: document.getElementById("vorname").value,
+        nachname: document.getElementById("nachname").value,
+        email: document.getElementById("email").value,
+        telefon: document.getElementById("telefon").value,
+        fahrzeugmodell: document.getElementById("fahrzeugmodell").value,
+        fin: document.getElementById("fin").value,
+        wunschkennzeichen: document.getElementById("wunschkennzeichen").value,
+        zulassungsart: document.getElementById("zulassungsart").value
+      };
+      try {
+        const res = await fetch("/api/zulassung", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const respData = await res.json();
+        if (respData.success) {
+          e.target.reset();
+          zulassungSuccessModal.style.display = 'flex';
+        } else {
+          alert(respData.message || "Es ist ein Fehler aufgetreten.");
+        }
+      } catch (err) {
+        alert("Serverfehler beim Versenden des Formulars.");
+      }
+    };
+  </script>
+</body>
+</html>

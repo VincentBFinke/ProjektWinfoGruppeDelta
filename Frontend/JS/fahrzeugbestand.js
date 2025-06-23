@@ -103,7 +103,6 @@ async function updateErgebnisButton() {
   const res = await fetch('http://localhost:3000/api/fahrzeuge' + query);
   const autos = await res.json();
 
-  // Nur Button-Text setzen, keine Karten anzeigen!
   const btn = document.getElementById('filter-button');
   btn.innerText = `${autos.length} Ergebnisse anzeigen`;
 }
@@ -147,22 +146,28 @@ function showFahrzeugCards(data) {
       reserviertBisText = `Reserviert bis: ${bisDatum.toLocaleDateString('de-DE')}`;
     }
 
-    // Details-Button nur anklickbar, wenn nicht reserviert
+    // VERKAUFT-Flag
+    let verkauft = !!auto.verkauft && auto.verkauft !== false;
+    let verkauftBadge = verkauft ? `<span class="verkauft-badge">Verkauft</span>` : '';
+    let cardClass = verkauft ? 'fahrzeug-card verkauft' : 'fahrzeug-card';
     let detailsBtn = '';
-    if (reserviert) {
+
+    if (verkauft) {
+      detailsBtn = `<button class="details-button disabled" disabled title="Dieses Fahrzeug ist verkauft">Verkauft</button>`;
+    } else if (reserviert) {
       detailsBtn = `<button class="details-button disabled" disabled title="Fahrzeug ist reserviert und nicht verfügbar">${reserviertBisText}</button>`;
     } else {
       detailsBtn = `<a href="einzelangebot.html?id=${auto.id}" class="details-button">DETAILS</a>`;
     }
 
-    // Reserviert-Badge
     let reserviertBadge = '';
-    if (reserviert) {
+    if (reserviert && !verkauft) {
       reserviertBadge = `<span class="reserviert-badge">Reserviert</span>`;
     }
 
     return `
-      <div class="fahrzeug-card">
+      <div class="${cardClass}">
+        ${verkauftBadge}
         ${reserviertBadge}
         <img src="${bildUrl}" alt="${auto.modell}" />
         <div class="fahrzeug-info">

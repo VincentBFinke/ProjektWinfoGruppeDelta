@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Finanzierung & Leasing – CARPRO</title>
+  <link rel="stylesheet" href="../CSS/einzelangebot.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { background: #f8f8f8; }
+    .steps-finanzierung-container {
+      max-width: 1080px;
+      margin: 44px auto 0 auto;
+      margin-bottom: 34px;
+      padding: 0 18px;
+    }
+    .steps-finanzierung-header {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #1d1d1d;
+      margin-bottom: 14px;
+      letter-spacing: -.5px;
+      line-height: 1.1;
+    }
+    .steps-finanzierung-header .steps-underline {
+      border-bottom: 4px solid #d93030;
+      padding-bottom: 4px;
+      display: inline-block;
+    }
+    .steps-finanzierung-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+      gap: 32px;
+    }
+    .steps-finanzierung-step {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 28px 0 rgba(45,45,45,0.09);
+      padding: 36px 22px 30px 26px;
+      border-left: 7px solid #d93030;
+      position: relative;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .steps-finanzierung-step .steps-finanzierung-number {
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: #d93030;
+      line-height: 1;
+      margin-bottom: 2px;
+      letter-spacing: -.5px;
+    }
+    .steps-finanzierung-step h3 {
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: #222;
+      margin: 0 0 7px 0;
+    }
+    .steps-finanzierung-step p {
+      color: #444;
+      font-size: 1.01rem;
+      margin: 0;
+      font-weight: 400;
+    }
+    @media (max-width: 730px) {
+      .steps-finanzierung-step { padding: 24px 11px 18px 16px; }
+      .steps-finanzierung-header { font-size: 1.3rem; }
+      .steps-finanzierung-step .steps-finanzierung-number { font-size: 1.3rem; }
+      .steps-finanzierung-step h3 { font-size: 1rem; }
+      .steps-finanzierung-step { min-height: 100px; }
+    }
+    /* Rechner */
+    .finanzierung-container {
+      max-width: 540px;
+      margin: 44px auto 36px auto;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: 0 6px 36px 0 rgba(45,45,45,0.10);
+      padding: 44px 36px 32px 36px;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .finanzierung-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .finanzierung-header h1 {
+      color: #d93030;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+    .finanzierung-header p {
+      font-size: 1.11rem;
+      color: #454545;
+      margin-bottom: 0;
+    }
+    .angebot-switch {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 0 18px 0;
+    }
+    .angebot-switch-btn {
+      padding: 9px 26px;
+      border: none;
+      border-radius: 13px;
+      background: #f4f4f4;
+      color: #222;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+    }
+    .angebot-switch-btn.active,
+    .angebot-switch-btn:hover {
+      background: #d93030;
+      color: #fff;
+    }
+    .finanzierung-form-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-bottom: 15px;
+    }
+    .finanzierung-form-group {
+      flex: 1 1 220px;
+      min-width: 160px;
+      display: flex;
+      flex-direction: column;
+    }
+    .finanzierung-form-group label {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .finanzierung-form-group input,
+    .finanzierung-form-group select {
+      padding: 9px 12px;
+      border: 1.5px solid #ececec;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 7px;
+      background: #f8f8f8;
+      transition: border .18s;
+    }
+    .finanzierung-form-group input:focus,
+    .finanzierung-form-group select:focus {
+      border: 1.5px solid #d93030;
+      background: #fff;
+    }
+    .finanzierung-btn {
+      background: #d93030;
+      color: #fff;
+      font-weight: 700;
+      border: none;
+      border-radius: 13px;
+      font-size: 1.18rem;
+      padding: 15px 0;
+      margin-top: 18px;
+      cursor: pointer;
+      width: 100%;
+      transition: background .2s;
+      box-shadow: 0 4px 18px 0 rgba(200,35,51,0.08);
+    }
+    .finanzierung-btn:hover { background: #a5001a; }
+    .finanzierung-result {
+      margin-top: 26px;
+      border-radius: 13px;
+      background: #faebec;
+      color: #d93030;
+      font-weight: 500;
+      font-size: 1.11rem;
+      padding: 18px 19px 18px 21px;
+      border-left: 6px solid #d93030;
+      display: none;
+    }
+    @media (max-width: 700px) {
+      .finanzierung-container { padding: 6vw 3vw 3vw 3vw; max-width: 99vw; }
+      .finanzierung-form-row { flex-direction: column; gap: 0; }
+    }
+    /* Footer */
+    .main-footer {
+      background: #d93030;
+      color: #fff;
+      padding: 32px 0 18px 0;
+      text-align: center;
+      margin-top: 60px;
+      width: 100vw;
+    }
+    .footer-content {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logo img {
+      height: 48px;
+      margin-bottom: 14px;
+      filter: brightness(0) invert(1) contrast(1.2);
+    }
+    .footer-links {
+      margin-bottom: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: center;
+    }
+    .footer-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.08rem;
+      background: rgba(255,255,255,0.12);
+      padding: 7px 19px;
+      border-radius: 8px;
+      transition: background 0.17s, color 0.17s;
+    }
+    .footer-links a:hover {
+      background: #fff;
+      color: #d93030;
+    }
+    .footer-copy {
+      font-size: 1rem;
+      margin-bottom: 0;
+      margin-top: 6px;
+      opacity: 0.93;
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="header-center">
+      <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center"></nav>
+    </div>
+  </header>
+
+  <!-- Login-Modal -->
+  <div id="login-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form id="login-form" autocomplete="off">
+        <label for="login-email">E-Mail-Adresse</label>
+        <input type="email" id="login-email" name="email" required>
+        <label for="login-passwort">Passwort</label>
+        <input type="password" id="login-passwort" name="passwort" required>
+        <button type="submit" class="login-btn">Anmelden</button>
+      </form>
+      <p class="register-hint">
+        Noch kein Konto?
+        <a href="registrieren.html" id="go-register">Jetzt registrieren</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Schritt-Anleitung -->
+  <section class="steps-finanzierung-container">
+    <div class="steps-finanzierung-header">
+      <span class="steps-underline">So erhalten Sie Ihr persönliches Angebot</span>
+    </div>
+    <div class="steps-finanzierung-grid">
+      <div class="steps-finanzierung-step">
+        <div class="steps-finanzierung-number">01</div>
+        <h3>Finanzierungsart wählen</h3>
+        <p>
+          Entscheiden Sie sich für ein Finanzierungs- oder Leasingmodell – flexibel nach Ihren Bedürfnissen.
+        </p>
+      </div>
+      <div class="steps-finanzierung-step">
+        <div class="steps-finanzierung-number">02</div>
+        <h3>Eckdaten eingeben</h3>
+        <p>
+          Tragen Sie Fahrzeugsumme, gewünschte Laufzeit, Anzahlung und weitere Daten ein.
+        </p>
+      </div>
+      <div class="steps-finanzierung-step">
+        <div class="steps-finanzierung-number">03</div>
+        <h3>Angebot berechnen</h3>
+        <p>
+          Lassen Sie Ihr individuelles Angebot mit wenigen Klicks berechnen – direkt und unverbindlich.
+        </p>
+      </div>
+      <div class="steps-finanzierung-step">
+        <div class="steps-finanzierung-number">04</div>
+        <h3>Abschluss und Beratung</h3>
+        <p>
+          Bei Interesse beraten wir Sie gerne persönlich und unterstützen beim Vertragsabschluss.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="finanzierung-container">
+      <div class="finanzierung-header">
+        <h1>Finanzierung & Leasing berechnen</h1>
+        <p>
+          Nutzen Sie unseren Rechner für ein individuelles Finanzierungs- oder Leasingangebot – transparent, schnell und unverbindlich.
+        </p>
+      </div>
+      <div class="angebot-switch">
+        <button id="finSwitch" class="angebot-switch-btn active" type="button">Finanzierung</button>
+        <button id="leasingSwitch" class="angebot-switch-btn" type="button">Leasing</button>
+      </div>
+      <form id="finanzierung-form">
+        <div class="finanzierung-form-row">
+          <div class="finanzierung-form-group">
+            <label for="kaufpreis">Kaufpreis des Fahrzeugs (€)*</label>
+            <input type="number" id="kaufpreis" name="kaufpreis" min="1000" required>
+          </div>
+          <div class="finanzierung-form-group" id="anzahlung-group">
+            <label for="anzahlung">Anzahlung (€)</label>
+            <input type="number" id="anzahlung" name="anzahlung" min="0">
+          </div>
+        </div>
+        <div class="finanzierung-form-row">
+          <div class="finanzierung-form-group">
+            <label for="laufzeit">Laufzeit (Monate)*</label>
+            <select id="laufzeit" name="laufzeit" required>
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="48">48</option>
+              <option value="60">60</option>
+              <option value="72">72</option>
+              <option value="84">84</option>
+              <option value="96">96</option>
+            </select>
+          </div>
+          <div class="finanzierung-form-group" id="zins-leasing-group">
+            <label for="zinssatz" id="zins-leasing-label">Sollzinssatz p.a. (%)</label>
+            <input type="number" id="zinssatz" name="zinssatz" min="0.01" max="10" step="0.01" value="6.00" required>
+          </div>
+        </div>
+        <button type="submit" class="finanzierung-btn">Angebot berechnen</button>
+      </form>
+      <div class="finanzierung-result" id="finanzierung-result"></div>
+    </div>
+  </main>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/logo.png" alt="CARPRO Logo" />
+      </div>
+      <div class="footer-links">
+        <a href="startseite.html">Startseite</a>
+        <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+        <a href="#">Services</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2025 CARPRO Autovermietung &ndash; Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Header wie auf den anderen Seiten (Profil/Startseite)
+    function updateHeaderUser() {
+      const nav = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          updateHeaderUser();
+        };
+      } else {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <a href="#">Services</a>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
+    document.getElementById("close-login").onclick = () => {
+      document.getElementById("login-modal").style.display = "none";
+    };
+    document.getElementById("login-modal").onclick = (e) => {
+      if (e.target === document.getElementById("login-modal")) {
+        document.getElementById("login-modal").style.display = "none";
+      }
+    };
+    document.getElementById("go-register").onclick = function(e) {
+      e.preventDefault();
+      window.location.href = "registrieren.html";
+    };
+    document.getElementById("login-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      localStorage.setItem("userName", email);
+      document.getElementById("login-modal").style.display = "none";
+      updateHeaderUser();
+    };
+    document.addEventListener("DOMContentLoaded", updateHeaderUser);
+
+    // Finanzierung <-> Leasing Umschalten
+    const finSwitch = document.getElementById('finSwitch');
+    const leasingSwitch = document.getElementById('leasingSwitch');
+    const zinsLeasingGroup = document.getElementById('zins-leasing-group');
+    const zinsLeasingLabel = document.getElementById('zins-leasing-label');
+    const zinssatzInput = document.getElementById('zinssatz');
+    const anzahlungGroup = document.getElementById('anzahlung-group');
+    let modus = 'finanzierung';
+
+    finSwitch.onclick = function() {
+      finSwitch.classList.add('active');
+      leasingSwitch.classList.remove('active');
+      zinsLeasingLabel.textContent = 'Sollzinssatz p.a. (%)';
+      zinssatzInput.value = '6.00';
+      zinssatzInput.disabled = true;
+      anzahlungGroup.style.display = 'flex';
+      modus = 'finanzierung';
+    };
+    leasingSwitch.onclick = function() {
+      leasingSwitch.classList.add('active');
+      finSwitch.classList.remove('active');
+      zinsLeasingLabel.textContent = 'Leasingfaktor (%)';
+      zinssatzInput.value = '1.00';
+      zinssatzInput.disabled = true;
+      anzahlungGroup.style.display = 'none';
+      modus = 'leasing';
+    };
+    // Standard: Finanzierung vorauswählen
+    window.addEventListener('DOMContentLoaded', () => {
+      finSwitch.classList.add('active');
+      leasingSwitch.classList.remove('active');
+      zinsLeasingLabel.textContent = 'Sollzinssatz p.a. (%)';
+      zinssatzInput.value = '6.00';
+      zinssatzInput.disabled = true;
+      anzahlungGroup.style.display = 'flex';
+    });
+
+    // Angebotsberechnung
+    document.getElementById("finanzierung-form").onsubmit = function(e) {
+      e.preventDefault();
+      const kaufpreis = Number(document.getElementById('kaufpreis').value);
+      const anzahlung = Number(document.getElementById('anzahlung').value) || 0;
+      const laufzeit = Number(document.getElementById('laufzeit').value);
+      const zinssatz = Number(document.getElementById('zinssatz').value);
+
+      let resultBox = document.getElementById("finanzierung-result");
+      let text = '';
+
+      if (modus === 'finanzierung') {
+        // Annuitätenformel (vereinfachte Variante)
+        const kreditbetrag = kaufpreis - anzahlung;
+        if (kreditbetrag <= 0) {
+          alert('Anzahlung darf nicht größer als Kaufpreis sein.');
+          return;
+        }
+        const i = 6.00 / 12 / 100;
+        const n = laufzeit;
+        const rate = kreditbetrag * i / (1 - Math.pow(1 + i, -n));
+        const gesamtkosten = (rate * n + anzahlung);
+
+        text = `
+          <b>Finanzierungsangebot:</b><br>
+          Monatliche Rate: <span style="color:#d93030;font-size:1.25rem;font-weight:700;">${rate.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €</span><br>
+          Gesamtkosten: ${gesamtkosten.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €<br>
+          Laufzeit: ${laufzeit} Monate<br>
+          Anzahlung: ${anzahlung.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €
+        `;
+      } else {
+        // Leasing: Leasingrate = Listenpreis * Leasingfaktor / 100 (ohne Anzahlung)
+        const leasingfaktor = 1.00; // fest, in %
+        const monatlicheLeasingrate = kaufpreis * (leasingfaktor / 100);
+        const gesamtkosten = monatlicheLeasingrate * laufzeit;
+        text = `
+          <b>Leasingangebot:</b><br>
+          Monatliche Leasingrate: <span style="color:#d93030;font-size:1.25rem;font-weight:700;">${monatlicheLeasingrate.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €</span><br>
+          Gesamtkosten: ${gesamtkosten.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €<br>
+          Laufzeit: ${laufzeit} Monate<br>
+          Leasingfaktor: ${leasingfaktor.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} %<br>
+          Listenpreis: ${kaufpreis.toLocaleString('de-DE', {minimumFractionDigits:2, maximumFractionDigits:2})} €
+        `;
+      }
+
+      resultBox.innerHTML = text;
+      resultBox.style.display = "block";
+      resultBox.scrollIntoView({behavior: "smooth"});
+    };
+  </script>
+</body>
+</html>

@@ -292,6 +292,34 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* VERKAUFT-BADGE + AUSGRAUEN */
+.fahrzeug-card.verkauft {
+  opacity: 0.48;
+  pointer-events: none;
+  filter: grayscale(0.72) blur(0.5px);
+  transition: opacity 0.2s;
+  box-shadow: 0 1px 12px rgba(180, 0, 0, 0.09);
+  position: relative;
+}
+.verkauft-badge {
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: #888888;
+  color: #fff;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 16px;
+  font-size: 1.08rem;
+  z-index: 12;
+  box-shadow: 0 1px 8px rgba(60,10,10,0.12);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.88;
+  pointer-events: none;
+}
+
 /* Responsive Header */
 @media (max-width: 900px) {
   .logo { height: 40px; margin-right: 14px; }

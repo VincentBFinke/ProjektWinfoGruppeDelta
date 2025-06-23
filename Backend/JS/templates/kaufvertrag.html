@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaufvertrag</title>
+  <meta name="viewport" content="width=600">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #1a1a1a;
+      padding: 0;
+    }
+    .pdf-container {
+      background: #fff;
+      max-width: 720px;
+      margin: 24px auto;
+      padding: 32px 38px 40px 38px;
+      border-radius: 24px;
+      box-shadow: 0 6px 32px rgba(50,50,80,0.10);
+    }
+    h1, h2, h3 {
+      color: #d93030;
+      margin-bottom: 12px;
+      margin-top: 18px;
+    }
+    h1 { font-size: 2.1rem; margin-top: 0; }
+    h2 { font-size: 1.33rem; }
+    h3 { font-size: 1.13rem; }
+    .vertragsnummer {
+      font-size: 1.13rem;
+      font-weight: 600;
+      color: #003366;
+      margin: 4px 0 16px 0;
+    }
+    .section { margin-bottom: 26px; }
+    .kv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 11px;
+      background: #f7f7fa;
+      border-radius: 5px;
+      font-size: 0.99rem;
+    }
+    .kv-table th, .kv-table td {
+      text-align: left;
+      padding: 6px 12px 6px 9px;
+      border-bottom: 1px solid #eee;
+    }
+    .kv-table th {
+      color: #d93030;
+      font-weight: 600;
+      width: 160px;
+    }
+    .pdf-bilder {
+      margin: 12px 0 13px 0;
+    }
+    .pdf-bilder img {
+      max-width: 125px;
+      max-height: 76px;
+      border-radius: 8px;
+      margin-right: 8px;
+      margin-bottom: 8px;
+      border: 1px solid #eee;
+      box-shadow: 0 2px 8px rgba(120,120,120,0.07);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .kv-ul {
+      margin: 4px 0 7px 18px;
+      padding-left: 0;
+      font-size: 1.03rem;
+      columns: 2 180px;
+      column-gap: 32px;
+    }
+    .kv-ul li {
+      margin-bottom: 5px;
+      color: #232526;
+      font-weight: 400;
+      break-inside: avoid;
+      list-style: disc inside;
+    }
+    .hinweis {
+      background: #ffeaea;
+      border-radius: 8px;
+      padding: 10px 13px;
+      color: #c42424;
+      margin-top: 12px;
+      font-size: 1.06rem;
+    }
+    @media (max-width: 750px) {
+      .pdf-container { padding: 10px 3vw 16px 3vw; }
+    }
+  </style>
+</head>
+<body>
+  <div class="pdf-container">
+    <h1>Kaufvertrag</h1>
+    <div class="vertragsnummer">
+      Vertragsnummer: <b>{{vertragsnummer}}</b>
+    </div>
+    <div class="section">
+      <h3>Käuferdaten</h3>
+      <table class="kv-table">
+        <tr><th>Name</th><td>{{name}}</td></tr>
+        <tr><th>Adresse</th><td>{{adresse}}</td></tr>
+        <tr><th>E-Mail</th><td>{{email}}</td></tr>
+        <tr><th>Telefon</th><td>{{telefon}}</td></tr>
+      </table>
+    </div>
+    <div class="section">
+      <h3>Fahrzeugdaten</h3>
+      <table class="kv-table">
+        <tr><th>Hersteller</th><td>{{hersteller}}</td></tr>
+        <tr><th>Modell</th><td>{{modell}}</td></tr>
+        <tr><th>Preis</th><td>{{preis}} €</td></tr>
+        <tr><th>Erstellt am</th><td>{{vertragsdatum}}</td></tr>
+      </table>
+    </div>
+    <div class="section">
+      <h3>Fahrzeugbilder</h3>
+      <div class="pdf-bilder">
+        {{bilder}}
+      </div>
+    </div>
+    <div class="section">
+      <h3>Technische Daten</h3>
+      <table class="kv-table">
+        {{technische_daten}}
+      </table>
+    </div>
+    <div class="section">
+      <h3>Ausstattung</h3>
+      <ul class="kv-ul">
+        {{ausstattung}}
+      </ul>
+    </div>
+    <div class="hinweis">
+      <b>Hinweis:</b> Der Vertrag wird erst wirksam nach Unterschrift vor Ort und Zahlung des Kaufpreises.<br>
+      Ein Mitarbeiter wird Sie telefonisch kontaktieren und einen Termin mit Ihnen ausmachen.
+    </div>
+  </div>
+</body>
+</html>
