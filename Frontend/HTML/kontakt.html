@@ -6,25 +6,108 @@
   <title>Kontakt – CARPRO Autovermietung</title>
   <link rel="stylesheet" href="../CSS/kontakt.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    /* Modal Styles (nur falls nicht global vorhanden) */
+    .modal-bg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      z-index: 1010;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(24, 24, 24, 0.18);
+      backdrop-filter: blur(2px);
+    }
+    .modal-content {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px 0 rgba(44,44,44,0.16);
+      padding: 38px 38px 28px 38px;
+      min-width: 340px;
+      min-height: 100px;
+      max-width: 96vw;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      margin: 0 10px;
+      font-family: 'Segoe UI', sans-serif;
+      animation: fadeInModal .35s cubic-bezier(.17,.67,.83,.67);
+    }
+    @keyframes fadeInModal {
+      0% { opacity:0; transform:translateY(30px) scale(.95);}
+      100% { opacity:1; transform:translateY(0) scale(1);}
+    }
+    .close-modal {
+      position: absolute;
+      right: 20px; top: 18px;
+      font-size: 1.6rem;
+      color: #228741;
+      cursor: pointer;
+      font-weight: 700;
+      transition: color .2s;
+    }
+    .close-modal:hover { color: #166e28; }
+
+    /* Dropdown Menü für Services */
+.dropdown-nav {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 105%; left: 0;
+  background: #fff;
+  min-width: 210px;
+  border-radius: 13px;
+  box-shadow: 0 6px 22px rgba(50,50,80,0.12);
+  z-index: 100;
+  padding: 6px 0;
+  flex-direction: column;
+}
+.dropdown-menu a {
+  color: #d93030;
+  background: none;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 11px 22px;
+  border-radius: 9px;
+  font-size: 1.07rem;
+  transition: background 0.16s, color 0.16s;
+  text-align: left;
+}
+.dropdown-menu a:hover {
+  background: #ffecec;
+  color: #003366;
+}
+.dropdown-nav.open .dropdown-menu {
+  display: flex;
+}
+.dropdown-toggle i {
+  margin-left: 4px;
+  font-size: 1.02em;
+}
+
+  </style>
 </head>
 <body>
 
-  <!-- HEADER (wie auf Startseite) -->
+  <!-- HEADER -->
   <header class="main-header">
-    <nav class="nav-left">
-      <a href="startseite.html">Startseite</a>
-      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-    </nav>
-    <div class="logo-center">
+    <div class="header-center">
       <img src="../images/logo.png" alt="CARPRO Logo" class="logo" />
+      <nav class="nav-center" id="nav-center"></nav>
     </div>
-    <nav class="nav-right">
-      <a href="#">Services</a>
-      <a href="#" class="active">Kontakt</a>
-      <a href="#"><i class="fas fa-user"></i> Login</a>
-    </nav>
   </header>
-
+  
   <!-- HERO TEXT -->
   <section class="kontakt-hero">
     <h1>Kontakt zu uns!</h1>
@@ -44,7 +127,7 @@
       </div>
 
       <!-- Formular -->
-      <form class="kontakt-formular">
+      <form class="kontakt-formular" id="kontaktForm">
         <h2>Kontakt</h2>
         <div class="form-row">
           <input type="text" name="vorname" placeholder="Vorname" required />
@@ -61,8 +144,145 @@
         </div>
         <button type="submit" class="senden-btn">Senden</button>
       </form>
+      <div id="formFehler" style="display:none;margin-top:20px;font-weight:600;color:#d93030;">
+        ❌ Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.
+      </div>
     </div>
   </main>
 
+  <!-- Erfolgs-Modal für Kontakt -->
+  <div id="kontakt-erfolg-modal" class="modal-bg" style="display:none;">
+    <div class="modal-content">
+      <span class="close-modal" id="close-kontakt-erfolg">&times;</span>
+      <h2 style="color:#228741;text-align:center;">Nachricht gesendet!</h2>
+      <p style="text-align:center;">
+        ✅ Ihre Nachricht wurde erfolgreich übermittelt!<br>
+        Wir melden uns schnellstmöglich.<br><br>
+        <button onclick="closeKontaktErfolg()" style="margin-top:14px;background:#228741;color:#fff;padding:11px 26px;border:none;border-radius:9px;font-weight:600;font-size:1.05rem;">Schließen</button>
+      </p>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="../images/logo.png" alt="CARPRO Logo" />
+      </div>
+      <div class="footer-links">
+        <a href="startseite.html">Startseite</a>
+        <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+        <a href="#">Services</a>
+        <a href="kontakt.html" class="active">Kontakt</a>
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+      <div class="footer-copy">
+        &copy; 2025 CARPRO Autovermietung &ndash; Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+  <script>
+    function updateHeaderUser() {
+  const nav = document.getElementById("nav-center");
+  const userName = localStorage.getItem("userName");
+
+  if (userName) {
+    nav.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html" class="active">Kontakt</a>
+      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+      <a href="#" id="logout-link">Logout</a>
+    `;
+    document.getElementById("logout-link").onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userName");
+      updateHeaderUser();
+    };
+  } else {
+    nav.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html" class="active">Kontakt</a>
+      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+    `;
+    document.getElementById("login-link").onclick = (e) => {
+      e.preventDefault();
+      document.getElementById("login-modal").style.display = "flex";
+    };
+  }
+}
+
+document.addEventListener("DOMContentLoaded", updateHeaderUser);
+
+
+
+
+    // Formular absenden (AJAX an Backend)
+    document.getElementById("kontaktForm").onsubmit = async function(e) {
+      e.preventDefault();
+      document.getElementById("formFehler").style.display = "none";
+
+      const form = e.target;
+      const body = {
+        vorname: form.vorname.value,
+        nachname: form.nachname.value,
+        email: form.email.value,
+        telefon: form.telefon.value,
+        nachricht: form.nachricht.value
+      };
+      try {
+        const res = await fetch("http://localhost:3000/api/kontakt", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body)
+        });
+        if (res.ok) {
+          form.reset();
+          document.getElementById("kontakt-erfolg-modal").style.display = "flex"; // Modal öffnen
+        } else {
+          document.getElementById("formFehler").style.display = "block";
+        }
+      } catch {
+        document.getElementById("formFehler").style.display = "block";
+      }
+    };
+
+    // Modal schließen-Logik
+    function closeKontaktErfolg() {
+      document.getElementById("kontakt-erfolg-modal").style.display = "none";
+    }
+    document.getElementById("close-kontakt-erfolg").onclick = closeKontaktErfolg;
+    document.getElementById("kontakt-erfolg-modal").onclick = function(e) {
+      if (e.target === document.getElementById("kontakt-erfolg-modal")) closeKontaktErfolg();
+    };
+
+    // Dropdown-Menü für Services
+document.addEventListener('click', function(e) {
+  const dropdowns = document.querySelectorAll('.dropdown-nav');
+  dropdowns.forEach(dd => {
+    if (dd.contains(e.target)) {
+      dd.classList.toggle('open');
+    } else {
+      dd.classList.remove('open');
+    }
+  });
+});
+
+  </script>
 </body>
 </html>

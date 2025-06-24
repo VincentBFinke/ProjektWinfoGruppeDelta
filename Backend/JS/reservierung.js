@@ -96,8 +96,14 @@ router.post('/', async (req, res) => {
           Mit freundlichen Grüßen<br>
           Ihr CARPRO Team
         </p>
+        <hr style="margin: 32px 0 16px 0; border:none; border-top:1px solid #ccc;">
+        <div style="font-size:0.98rem; color:#333;">
+          <b>CARPRO Autovermietung</b><br>
+          Carpro Straße 7<br>
+          46397 Bocholt
+        </div>
       `
-    });
+    });    
 
     res.json({ success: true, message: "Reservierung und Mail erfolgreich!", reserviert_bis: reserviertBis });
   } catch (error) {

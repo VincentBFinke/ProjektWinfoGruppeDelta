@@ -73,6 +73,26 @@
     <div id="fahrzeug-container" class="fahrzeug-grid"></div>
   </main>
 
+  <!-- FOOTER wie in finanzierung.html -->
+  <footer class="main-footer" style="background: #d93030; color: #fff; padding: 32px 0 18px 0; text-align: center; margin-top: 60px; width: 100vw;">
+    <div class="footer-content" style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; align-items:center;">
+      <div class="footer-logo">
+        <img src="../images/logo.png" alt="CARPRO Logo" style="height:48px; margin-bottom:14px; filter:brightness(0) invert(1) contrast(1.2);">
+      </div>
+      <div class="footer-links" style="margin-bottom:14px; display:flex; flex-wrap:wrap; gap:24px; justify-content:center;">
+        <a href="startseite.html" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Startseite</a>
+        <a href="fahrzeugbestand.html" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Fahrzeugbestand</a>
+        <a href="#" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Services</a>
+        <a href="kontakt.html" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Kontakt</a>
+        <a href="#" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Impressum</a>
+        <a href="#" style="color:#fff; text-decoration:none; font-weight:500; font-size:1.08rem; background:rgba(255,255,255,0.12); padding:7px 19px; border-radius:8px; transition:background 0.17s, color 0.17s;">Datenschutz</a>
+      </div>
+      <div class="footer-copy" style="font-size:1rem; margin-bottom:0; margin-top:6px; opacity:0.93; font-weight:400;">
+        &copy; 2025 CARPRO Autovermietung &ndash; Alle Rechte vorbehalten.
+      </div>
+    </div>
+  </footer>
+
   <script src="../JS/fahrzeugbestand.js"></script>
   <script>
     // --------- Header + Login Logik wie auf den anderen Seiten ----------
@@ -81,36 +101,50 @@
     }
 
     function updateHeaderUser() {
-      const navCenter = document.getElementById("nav-center");
-      const userName = localStorage.getItem("userName");
-      if (userName) {
-        navCenter.innerHTML = `
-          <a href="startseite.html">Startseite</a>
-          <a href="#" class="active">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
-          <a href="#" id="logout-link">Logout</a>
-        `;
-        document.getElementById("logout-link").onclick = (e) => {
-          e.preventDefault();
-          localStorage.removeItem("userName");
-          updateHeaderUser();
-        };
-      } else {
-        navCenter.innerHTML = `
-          <a href="startseite.html">Startseite</a>
-          <a href="#" class="active">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
-        `;
-        document.getElementById("login-link").onclick = (e) => {
-          e.preventDefault();
-          document.getElementById("login-modal").style.display = "flex";
-        };
-      }
-    }
+  const navCenter = document.getElementById("nav-center");
+  const userName = localStorage.getItem("userName");
+
+  if (userName) {
+    navCenter.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="#" class="active">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+      <a href="#" id="logout-link">Logout</a>
+    `;
+    document.getElementById("logout-link").onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userName");
+      updateHeaderUser();
+    };
+  } else {
+    navCenter.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="#" class="active">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+    `;
+    document.getElementById("login-link").onclick = (e) => {
+      e.preventDefault();
+      document.getElementById("login-modal").style.display = "flex";
+    };
+  }
+}
+
 
     // Modal schließen
     document.getElementById("close-login").onclick = () => {
@@ -153,6 +187,19 @@
     };
 
     document.addEventListener("DOMContentLoaded", updateHeaderUser);
+
+    // Dropdown-Menü Services
+document.addEventListener('click', function(e) {
+  const dropdowns = document.querySelectorAll('.dropdown-nav');
+  dropdowns.forEach(dd => {
+    if (dd.contains(e.target)) {
+      dd.classList.toggle('open');
+    } else {
+      dd.classList.remove('open');
+    }
+  });
+});
+
   </script>
 </body>
 </html>

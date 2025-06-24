@@ -86,6 +86,54 @@
       .profil-section { max-width: 96vw; padding: 16px; }
       .kaufvertrag-card, .reservierung-card { padding: 14px 8px; }
     }
+
+    /* Dropdown Menü für Services */
+.dropdown-nav {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 105%; left: 0;
+  background: #fff;
+  min-width: 210px;
+  border-radius: 13px;
+  box-shadow: 0 6px 22px rgba(50,50,80,0.12);
+  z-index: 100;
+  padding: 6px 0;
+  flex-direction: column;
+}
+.dropdown-menu a {
+  color: #d93030;
+  background: none;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 11px 22px;
+  border-radius: 9px;
+  font-size: 1.07rem;
+  transition: background 0.16s, color 0.16s;
+  text-align: left;
+}
+.dropdown-menu a:hover {
+  background: #ffecec;
+  color: #003366;
+}
+.dropdown-nav.open .dropdown-menu {
+  display: flex;
+}
+.dropdown-toggle i {
+  margin-left: 4px;
+  font-size: 1.02em;
+}
+
   </style>
 </head>
 <body>
@@ -150,38 +198,51 @@
   </footer>
 
   <script>
-    // Header-Logik (wie auf Startseite)
     function updateHeaderUser() {
-      const nav = document.getElementById("nav-center");
-      const userName = localStorage.getItem("userName");
-      if (userName) {
-        nav.innerHTML = `
-          <a href="startseite.html">Startseite</a>
-          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="profil.html" id="profil-link" class="active"><i class="fas fa-user"></i> Profil ansehen</a>
-          <a href="#" id="logout-link">Logout</a>
-        `;
-        document.getElementById("logout-link").onclick = (e) => {
-          e.preventDefault();
-          localStorage.removeItem("userName");
-          updateHeaderUser();
-        };
-      } else {
-        nav.innerHTML = `
-          <a href="startseite.html">Startseite</a>
-          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
-        `;
-        document.getElementById("login-link").onclick = (e) => {
-          e.preventDefault();
-          document.getElementById("login-modal").style.display = "flex";
-        };
-      }
-    }
+  const nav = document.getElementById("nav-center");
+  const userName = localStorage.getItem("userName");
+
+  if (userName) {
+    nav.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+      <a href="#" id="logout-link">Logout</a>
+    `;
+    document.getElementById("logout-link").onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userName");
+      updateHeaderUser();
+    };
+  } else {
+    nav.innerHTML = `
+      <a href="startseite.html">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+    `;
+    document.getElementById("login-link").onclick = (e) => {
+      e.preventDefault();
+      document.getElementById("login-modal").style.display = "flex";
+    };
+  }
+}
+
 
     // Modal schließen
     document.getElementById("close-login").onclick = () => {
@@ -334,6 +395,19 @@
         alert("Fehler beim Stornieren.");
       }
     }
+
+    // Dropdown-Menü für Services
+document.addEventListener('click', function(e) {
+  const dropdowns = document.querySelectorAll('.dropdown-nav');
+  dropdowns.forEach(dd => {
+    if (dd.contains(e.target)) {
+      dd.classList.toggle('open');
+    } else {
+      dd.classList.remove('open');
+    }
+  });
+});
+
   </script>
 </body>
 </html>

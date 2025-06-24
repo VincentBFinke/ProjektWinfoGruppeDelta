@@ -1,3 +1,5 @@
+require('dotenv').config({ path: __dirname + '/../../.env' }); // <--- Ergänzung!
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -10,7 +12,8 @@ const reservierungRouter = require('./reservierung');
 const kaufRouter = require('./kauf');
 const ankaufRouter = require('./ankauf');
 const zulassungRouter = require('./zulassung');
-const finanzierungRouter = require('./finanzierung'); // <- NEU
+const finanzierungRouter = require('./finanzierung');
+const kontaktRouter = require('./kontakt'); // <-- NEU: Kontakt-Router
 
 app.use(cors());
 app.use(express.json());
@@ -23,7 +26,8 @@ app.use('/api/reservierung', reservierungRouter);
 app.use('/api/kauf', kaufRouter);
 app.use('/api/ankauf', ankaufRouter);
 app.use('/api/zulassung', zulassungRouter);
-app.use('/api/finanzierung', finanzierungRouter); // <- NEU
+app.use('/api/finanzierung', finanzierungRouter);
+app.use('/api/kontakt', kontaktRouter); // <-- NEU: Kontakt-Router
 
 // Statische Pfade für Bilder & Uploads
 app.use('/images', express.static(path.join(__dirname, '../../../Frontend/images')));

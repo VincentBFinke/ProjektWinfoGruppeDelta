@@ -565,3 +565,51 @@ main {
   }
   .angebot-container { padding: 7px 0 8px 0; }
 }
+
+/* Dropdown Menü für Services */
+.dropdown-nav {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 105%; left: 0;
+  background: #fff;
+  min-width: 210px;
+  border-radius: 13px;
+  box-shadow: 0 6px 22px rgba(50,50,80,0.12);
+  z-index: 100;
+  padding: 6px 0;
+  flex-direction: column;
+}
+.dropdown-menu a {
+  color: #d93030;
+  background: none;
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+  padding: 11px 22px;
+  border-radius: 9px;
+  font-size: 1.07rem;
+  transition: background 0.16s, color 0.16s;
+  text-align: left;
+}
+.dropdown-menu a:hover {
+  background: #ffecec;
+  color: #003366;
+}
+.dropdown-nav.open .dropdown-menu {
+  display: flex;
+}
+.dropdown-toggle i {
+  margin-left: 4px;
+  font-size: 1.02em;
+}
+

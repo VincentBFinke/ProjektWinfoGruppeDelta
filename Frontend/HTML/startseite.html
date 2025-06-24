@@ -95,36 +95,49 @@
   <!-- LOGIN LOGIK & HEADER JS -->
   <script>
     function updateHeaderUser() {
-      const nav = document.getElementById("nav-center");
-      const userName = localStorage.getItem("userName");
-      if (userName) {
-        nav.innerHTML = `
-          <a href="startseite.html" class="active">Startseite</a>
-          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
-          <a href="#" id="logout-link">Logout</a>
-        `;
-        document.getElementById("logout-link").onclick = (e) => {
-          e.preventDefault();
-          localStorage.removeItem("userName");
-          updateHeaderUser();
-        };
-      } else {
-        nav.innerHTML = `
-          <a href="startseite.html" class="active">Startseite</a>
-          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-          <a href="#">Services</a>
-          <a href="kontakt.html">Kontakt</a>
-          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
-        `;
-        document.getElementById("login-link").onclick = (e) => {
-          e.preventDefault();
-          document.getElementById("login-modal").style.display = "flex";
-        };
-      }
-    }
+  const nav = document.getElementById("nav-center");
+  const userName = localStorage.getItem("userName");
+
+  if (userName) {
+    nav.innerHTML = `
+      <a href="startseite.html" class="active">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+      <a href="#" id="logout-link">Logout</a>
+    `;
+    document.getElementById("logout-link").onclick = (e) => {
+      e.preventDefault();
+      localStorage.removeItem("userName");
+      updateHeaderUser();
+    };
+  } else {
+    nav.innerHTML = `
+      <a href="startseite.html" class="active">Startseite</a>
+      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+      <div class="dropdown-nav">
+        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-menu">
+          <a href="zulassung.html">Zulassungsservice</a>
+          <a href="ankauf.html">Ankauf Altfahrzeug</a>
+        </div>
+      </div>
+      <a href="kontakt.html">Kontakt</a>
+      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+    `;
+    document.getElementById("login-link").onclick = (e) => {
+      e.preventDefault();
+      document.getElementById("login-modal").style.display = "flex";
+    };
+  }
+}
 
     // Modal schließen
     document.getElementById("close-login").onclick = () => {
@@ -167,6 +180,19 @@
     };
 
     document.addEventListener("DOMContentLoaded", updateHeaderUser);
+
+    // Dropdown-Menü für Services
+document.addEventListener('click', function(e) {
+  const dropdowns = document.querySelectorAll('.dropdown-nav');
+  dropdowns.forEach(dd => {
+    if (dd.contains(e.target)) {
+      dd.classList.toggle('open');
+    } else {
+      dd.classList.remove('open');
+    }
+  });
+});
+
   </script>
   <!-- Hier der KORREKTE Pfad: -->
   <script src="../JS/startseite.js"></script>
