@@ -18,4 +18,8 @@ Dieses Repository befasst sich mit der Implementierung des Geschäftsanwendungsf
 - Registierung für Privat und Geschäftskunden
 - Interessendaten erfassen
 - Bestätigungs-Mail versenden
-- 
+- Kaufvertrag erstellen/verwalten ermöglichen
+- Zusatzdienste bereitstellen
+- Berechnung von Finanzierung-/Leasingangebot ermöglichen
+- Zulassungsservice bereitstellen
+- Inzahlungnahme Altfahrzeug zur Verfügung stellen
