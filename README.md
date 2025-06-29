@@ -56,6 +56,39 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 #### Produktdemo
 - [Produktdemo](https://drive.google.com/file/d/12iDVlGZoZeuSKprOB0tC59OVDAGdpnDc/view?usp=sharing)
 
+### Kontakt
+
+- Lukas Eisner
+<br>Projektleiter, Front- und Backend Entwickler
+<br>lukas.eisner@studmail.w-hs.de
+
+- Vincent Bernhard Finke
+<br>Projektmitarbeiter,Frontend Entwickler
+<br>vincent.b.finke@studmail.w-hs.de
+
+- Alex Franz
+<br>Projektmitarbeiter, Front- und Backend Entwickler
+<br>alex.franz@studmail.w-hs.de
+
+- Umut Patir
+<br>Protokollführer, Frontend Entwickler
+<br>umut.patir@studmail.w-hs.de
+
+- Rajen Rafik
+<br>Projektmitarbeiter, Frontend Entwicklerin
+<br>rajen.rafik@studmail.w-hs.de
+
+- Bernd Wiederuh
+<br>Moderator, Front- und Backend Entwickler
+<br>bernd.wiederuh@studmail.w-hs.de
+
+
+
+
+
+
+ 
+
 
 
 
