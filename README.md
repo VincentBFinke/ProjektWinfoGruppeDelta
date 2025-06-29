@@ -38,6 +38,10 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 
 ### Dokumentation
 
+#### Vollständige Google Drive Doku
+- [Google Drive Doku](https://drive.google.com/drive/folders/1MOl6QTZShQ1kk49Gw6CPmpiOLa-Y1eEr?usp=drive_link)
+
+
 #### Auftrag
 - [Projektauftrag](https://docs.google.com/document/d/1RJYmHdSS7uipclAmnLHuTl3D00bsDbuW/edit?usp=sharing&ouid=115149592471075868606&rtpof=true&sd=true)
 
@@ -48,6 +52,11 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 - [Gantt-Diagramm](https://docs.google.com/spreadsheets/d/1jGHK-UEN9nJeG0R-hBegbMNlgJatOJsdK-O2wkysXik/edit?usp=sharing)
 - [Risikoreporting](https://drive.google.com/file/d/1DnpNrkLNoT-rb2wyDqRrvp-94K7XsBNZ/view?usp=sharing)
 - [Kostenreporting](https://drive.google.com/file/d/1Z6AQEMtNbe5_ZPVDgpHcg24NCrapMcL7/view?usp=sharing)
+
+#### Produktdemo
+- [Produktdemo](https://drive.google.com/file/d/12iDVlGZoZeuSKprOB0tC59OVDAGdpnDc/view?usp=sharing)
+
+
 
 
  
