@@ -56,6 +56,10 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 #### Produktdemo
 - [Produktdemo](https://drive.google.com/file/d/12iDVlGZoZeuSKprOB0tC59OVDAGdpnDc/view?usp=sharing)
 
+#### Supabase Cloud‑Datenbank auf Basis von PostgreSQL
+- [Datenbank Schema](https://drive.google.com/file/d/1xiOuKCsT0W3P1VvIgjZp-cBFzYyRuYZv/view?usp=sharing)
+
+
 ### Kontakt
 
 - Lukas Eisner
