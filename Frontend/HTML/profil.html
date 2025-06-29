@@ -86,54 +86,51 @@
       .profil-section { max-width: 96vw; padding: 16px; }
       .kaufvertrag-card, .reservierung-card { padding: 14px 8px; }
     }
-
-    /* Dropdown Menü für Services */
-.dropdown-nav {
-  position: relative;
-  display: inline-block;
-}
-.dropdown-toggle {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 105%; left: 0;
-  background: #fff;
-  min-width: 210px;
-  border-radius: 13px;
-  box-shadow: 0 6px 22px rgba(50,50,80,0.12);
-  z-index: 100;
-  padding: 6px 0;
-  flex-direction: column;
-}
-.dropdown-menu a {
-  color: #d93030;
-  background: none;
-  font-weight: 500;
-  text-decoration: none;
-  display: block;
-  padding: 11px 22px;
-  border-radius: 9px;
-  font-size: 1.07rem;
-  transition: background 0.16s, color 0.16s;
-  text-align: left;
-}
-.dropdown-menu a:hover {
-  background: #ffecec;
-  color: #003366;
-}
-.dropdown-nav.open .dropdown-menu {
-  display: flex;
-}
-.dropdown-toggle i {
-  margin-left: 4px;
-  font-size: 1.02em;
-}
-
+    .dropdown-nav {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 105%; left: 0;
+      background: #fff;
+      min-width: 210px;
+      border-radius: 13px;
+      box-shadow: 0 6px 22px rgba(50,50,80,0.12);
+      z-index: 100;
+      padding: 6px 0;
+      flex-direction: column;
+    }
+    .dropdown-menu a {
+      color: #d93030;
+      background: none;
+      font-weight: 500;
+      text-decoration: none;
+      display: block;
+      padding: 11px 22px;
+      border-radius: 9px;
+      font-size: 1.07rem;
+      transition: background 0.16s, color 0.16s;
+      text-align: left;
+    }
+    .dropdown-menu a:hover {
+      background: #ffecec;
+      color: #003366;
+    }
+    .dropdown-nav.open .dropdown-menu {
+      display: flex;
+    }
+    .dropdown-toggle i {
+      margin-left: 4px;
+      font-size: 1.02em;
+    }
   </style>
 </head>
 <body>
@@ -199,50 +196,51 @@
 
   <script>
     function updateHeaderUser() {
-  const nav = document.getElementById("nav-center");
-  const userName = localStorage.getItem("userName");
-
-  if (userName) {
-    nav.innerHTML = `
-      <a href="startseite.html">Startseite</a>
-      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-      <div class="dropdown-nav">
-        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="zulassung.html">Zulassungsservice</a>
-          <a href="ankauf.html">Ankauf Altfahrzeug</a>
-        </div>
-      </div>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
-      <a href="#" id="logout-link">Logout</a>
-    `;
-    document.getElementById("logout-link").onclick = (e) => {
-      e.preventDefault();
-      localStorage.removeItem("userName");
-      updateHeaderUser();
-    };
-  } else {
-    nav.innerHTML = `
-      <a href="startseite.html">Startseite</a>
-      <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
-      <div class="dropdown-nav">
-        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="zulassung.html">Zulassungsservice</a>
-          <a href="ankauf.html">Ankauf Altfahrzeug</a>
-        </div>
-      </div>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
-    `;
-    document.getElementById("login-link").onclick = (e) => {
-      e.preventDefault();
-      document.getElementById("login-modal").style.display = "flex";
-    };
-  }
-}
-
+      const nav = document.getElementById("nav-center");
+      const userName = localStorage.getItem("userName");
+      if (userName) {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <div class="dropdown-nav">
+            <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="zulassung.html">Zulassungsservice</a>
+              <a href="ankauf.html">Ankauf Altfahrzeug</a>
+            </div>
+          </div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userName");
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("userId");
+          updateHeaderUser();
+          window.location.reload();
+        };
+      } else {
+        nav.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="fahrzeugbestand.html">Fahrzeugbestand</a>
+          <div class="dropdown-nav">
+            <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="zulassung.html">Zulassungsservice</a>
+              <a href="ankauf.html">Ankauf Altfahrzeug</a>
+            </div>
+          </div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
 
     // Modal schließen
     document.getElementById("close-login").onclick = () => {
@@ -266,11 +264,13 @@
           body: JSON.stringify({ email, passwort }),
         });
         const data = await res.json();
-        if (!res.ok || !data.success) {
+        if (!res.ok || !data.success || !data.user) {
           alert(data.message || "Login fehlgeschlagen!");
           return;
         }
-        localStorage.setItem("userName", data.name || data.firma || email);
+        localStorage.setItem("userEmail", data.user.email);
+        localStorage.setItem("userName", data.user.name || data.user.firma || data.user.email);
+        localStorage.setItem("userId", data.user.id);
         document.getElementById("login-modal").style.display = "none";
         updateHeaderUser();
         window.location.reload();
@@ -285,94 +285,100 @@
       window.location.href = "registrieren.html?redirect=profil.html";
     };
 
-    // --- Kaufverträge & Benutzerinfos laden ---
+    // --- Profil: Benutzer + Verträge/Reservierungen laden ---
     document.addEventListener("DOMContentLoaded", () => {
       updateHeaderUser();
 
-      const userEmail = localStorage.getItem("userName");
+      // Hole E-Mail IMMER aus userEmail!
+      const userEmail = localStorage.getItem("userEmail") || localStorage.getItem("userName");
       if (!userEmail) return;
 
-      // KAUFVERTRÄGE
-      fetch(`http://localhost:3000/api/kauf?email=${encodeURIComponent(userEmail)}`)
+      // 1. Echten Benutzer aus DB laden!
+      fetch(`http://localhost:3000/api/auth/byemail?email=${encodeURIComponent(userEmail)}`)
         .then(res => res.json())
-        .then(response => {
-          // PROFIL-INFOS OBEN
-          let profileInfoHTML = "";
-          if (response.success && response.vertraege.length > 0) {
-            const user = response.vertraege[0];
-            profileInfoHTML = `
-              <div><i class="fa fa-user"></i> <b>Name:</b> ${user.name}</div>
-              <div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${user.email}</div>
-              <div><i class="fa fa-map-marker"></i> <b>Adresse:</b> ${user.adresse}</div>
-              <div><i class="fa fa-phone"></i> <b>Telefon:</b> ${user.telefon}</div>
-            `;
-          } else {
-            profileInfoHTML = `<div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${userEmail}</div>`;
-          }
-          document.getElementById('profil-info').innerHTML = profileInfoHTML;
-
-          // KAUFVERTRÄGE
-          const vertragsDiv = document.getElementById('meine-kaufvertraege');
-          vertragsDiv.innerHTML = "";
-          if (!response.success || !response.vertraege.length) {
-            vertragsDiv.innerHTML = "<div class='keine-vertraege'>Keine Kaufverträge gefunden.</div>";
+        .then(userRes => {
+          if (!userRes.success || !userRes.user) {
+            document.getElementById('profil-info').innerHTML = `<div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${userEmail}</div>`;
             return;
           }
-          response.vertraege.forEach(kv => {
-            vertragsDiv.innerHTML += `
-              <div class="kaufvertrag-card">
-                <div class="kv-header">
-                  <span class="kv-nr">Vertragsnummer: <b>${kv.vertragsnummer}</b></span>
-                  <span class="kv-datum">${new Date(kv.vertragsdatum).toLocaleDateString('de-DE')}</span>
-                </div>
-                <div><b>Fahrzeug:</b> ${kv.fahrzeuge.hersteller} ${kv.fahrzeuge.modell}</div>
-                <div><b>Preis:</b> ${Number(kv.preis).toLocaleString()} €</div>
-                <button class="pdf-btn" onclick="downloadVertragPDF('${kv.id}')"><i class="fa fa-file-pdf"></i> PDF herunterladen</button>
-              </div>
-            `;
-          });
+          const user = userRes.user;
+          document.getElementById('profil-info').innerHTML = `
+            <div><i class="fa fa-user"></i> <b>Name:</b> ${user.name ?? '-'}</div>
+            <div><i class="fa fa-envelope"></i> <b>E-Mail:</b> ${user.email ?? '-'}</div>
+          `;
+
+          // Verträge & Reservierungen laden:
+          ladeVertraegeUndReservierungen(user.email);
         });
 
-      // RESERVIERUNGEN
-      fetch(`http://localhost:3000/api/reservierung?email=${encodeURIComponent(userEmail)}`)
-        .then(res => res.json())
-        .then(response => {
-          const rvDiv = document.getElementById('meine-reservierungen');
-          rvDiv.innerHTML = "";
-          if (!response.success || !response.reservierungen.length) {
-            rvDiv.innerHTML = "<div class='keine-reservierungen'>Keine Reservierungen gefunden.</div>";
-            return;
-          }
-          response.reservierungen.forEach(rv => {
-            // Fallback für Status
-            let status = rv.fahrzeuge?.status || '-';
-            let statusColor = status === 'verkauft' ? '#b31515' : (status === 'reserviert' ? '#1a3579' : '#228c1d');
-            let statusText = status.charAt(0).toUpperCase() + status.slice(1);
-            let reserviertBisTxt = rv.reserviert_bis
-              ? new Date(rv.reserviert_bis).toLocaleDateString('de-DE')
-              : '-';
-            rvDiv.innerHTML += `
-              <div class="reservierung-card">
-                <div class="rv-header">
-                  <i class="fa fa-car"></i>
-                  ${rv.fahrzeuge?.hersteller ?? ''} ${rv.fahrzeuge?.modell ?? ''}
-                  <span style="font-size:14px;color:#333;font-weight:400; margin-left:6px;">
-                    <i class="fa fa-calendar"></i> 
-                    ${rv.wunschtermin ? new Date(rv.wunschtermin).toLocaleDateString('de-DE') : '-'}
-                    ${rv.uhrzeit ? 'um ' + rv.uhrzeit : ''}
-                  </span>
-                  <span class="reservierungs-status" style="background:${statusColor}22;color:${statusColor};border:1.5px solid ${statusColor};">${statusText}</span>
+      // Funktion für Verträge und Reservierungen
+      function ladeVertraegeUndReservierungen(email) {
+        // KAUFVERTRÄGE
+        fetch(`http://localhost:3000/api/kauf?email=${encodeURIComponent(email)}`)
+          .then(res => res.json())
+          .then(response => {
+            const vertragsDiv = document.getElementById('meine-kaufvertraege');
+            vertragsDiv.innerHTML = "";
+            if (!response.success || !response.vertraege.length) {
+              vertragsDiv.innerHTML = "<div class='keine-vertraege'>Keine Kaufverträge gefunden.</div>";
+              return;
+            }
+            response.vertraege.forEach(kv => {
+              vertragsDiv.innerHTML += `
+                <div class="kaufvertrag-card">
+                  <div class="kv-header">
+                    <span class="kv-nr">Vertragsnummer: <b>${kv.vertragsnummer}</b></span>
+                    <span class="kv-datum">${new Date(kv.vertragsdatum).toLocaleDateString('de-DE')}</span>
+                  </div>
+                  <div><b>Fahrzeug:</b> ${kv.fahrzeuge.hersteller} ${kv.fahrzeuge.modell}</div>
+                  <div><b>Preis:</b> ${Number(kv.preis).toLocaleString()} €</div>
+                  <button class="pdf-btn" onclick="downloadVertragPDF('${kv.id}')"><i class="fa fa-file-pdf"></i> PDF herunterladen</button>
                 </div>
-                <div class="rv-meta"><b>Reserviert bis:</b> ${reserviertBisTxt}</div>
-                <div class="rv-meta"><b>Name:</b> ${rv.name}</div>
-                <div class="rv-meta"><b>E-Mail:</b> ${rv.email}</div>
-                <button class="storno-btn" onclick="storniereReservierung('${rv.id}', '${rv.fahrzeug_id}')"><i class="fa fa-xmark"></i> Reservierung stornieren</button>
-              </div>
-            `;
+              `;
+            });
           });
-        });
+
+        // RESERVIERUNGEN
+        fetch(`http://localhost:3000/api/reservierung?email=${encodeURIComponent(email)}`)
+          .then(res => res.json())
+          .then(response => {
+            const rvDiv = document.getElementById('meine-reservierungen');
+            rvDiv.innerHTML = "";
+            if (!response.success || !response.reservierungen.length) {
+              rvDiv.innerHTML = "<div class='keine-reservierungen'>Keine Reservierungen gefunden.</div>";
+              return;
+            }
+            response.reservierungen.forEach(rv => {
+              let status = rv.fahrzeuge?.status || '-';
+              let statusColor = status === 'verkauft' ? '#b31515' : (status === 'reserviert' ? '#1a3579' : '#228c1d');
+              let statusText = status.charAt(0).toUpperCase() + status.slice(1);
+              let reserviertBisTxt = rv.reserviert_bis
+                ? new Date(rv.reserviert_bis).toLocaleDateString('de-DE')
+                : '-';
+              rvDiv.innerHTML += `
+                <div class="reservierung-card">
+                  <div class="rv-header">
+                    <i class="fa fa-car"></i>
+                    ${rv.fahrzeuge?.hersteller ?? ''} ${rv.fahrzeuge?.modell ?? ''}
+                    <span style="font-size:14px;color:#333;font-weight:400; margin-left:6px;">
+                      <i class="fa fa-calendar"></i> 
+                      ${rv.wunschtermin ? new Date(rv.wunschtermin).toLocaleDateString('de-DE') : '-'}
+                      ${rv.uhrzeit ? 'um ' + rv.uhrzeit : ''}
+                    </span>
+                    <span class="reservierungs-status" style="background:${statusColor}22;color:${statusColor};border:1.5px solid ${statusColor};">${statusText}</span>
+                  </div>
+                  <div class="rv-meta"><b>Reserviert bis:</b> ${reserviertBisTxt}</div>
+                  <div class="rv-meta"><b>Name:</b> ${rv.name}</div>
+                  <div class="rv-meta"><b>E-Mail:</b> ${rv.email}</div>
+                  <button class="storno-btn" onclick="storniereReservierung('${rv.id}', '${rv.fahrzeug_id}')"><i class="fa fa-xmark"></i> Reservierung stornieren</button>
+                </div>
+              `;
+            });
+          });
+      }
     });
 
+    // PDF Download
     function downloadVertragPDF(id) {
       window.open(`http://localhost:3000/api/kauf/pdf/${id}`);
     }
@@ -397,17 +403,16 @@
     }
 
     // Dropdown-Menü für Services
-document.addEventListener('click', function(e) {
-  const dropdowns = document.querySelectorAll('.dropdown-nav');
-  dropdowns.forEach(dd => {
-    if (dd.contains(e.target)) {
-      dd.classList.toggle('open');
-    } else {
-      dd.classList.remove('open');
-    }
-  });
-});
-
+    document.addEventListener('click', function(e) {
+      const dropdowns = document.querySelectorAll('.dropdown-nav');
+      dropdowns.forEach(dd => {
+        if (dd.contains(e.target)) {
+          dd.classList.toggle('open');
+        } else {
+          dd.classList.remove('open');
+        }
+      });
+    });
   </script>
 </body>
 </html>

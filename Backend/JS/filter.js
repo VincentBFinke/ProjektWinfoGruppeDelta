@@ -3,7 +3,7 @@
  */
 
 // Demo-Daten - in der Praxis würden diese von einer API kommen
-// Demo-Daten mit mehr Attributen
+// Demo-Daten mit mehr Attributenn
 const demoVehicles = [
     {
         id: 1,

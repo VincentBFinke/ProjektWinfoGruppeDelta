@@ -76,8 +76,8 @@ router.post('/', async (req, res) => {
         vertragsdatum,
         preis,
         fahrzeugdaten,
-        bilder: bilderArr,
-        status: 'offen'
+        bilder: bilderArr
+        // <<== KEIN "status: 'offen'" mehr!
       }])
       .select()
       .maybeSingle();

@@ -73,7 +73,7 @@
     <div id="fahrzeug-container" class="fahrzeug-grid"></div>
   </main>
 
-  <!-- FOOTER wie in finanzierung.html -->
+  <!-- FOOTER -->
   <footer class="main-footer" style="background: #d93030; color: #fff; padding: 32px 0 18px 0; text-align: center; margin-top: 60px; width: 100vw;">
     <div class="footer-content" style="max-width:1280px; margin:0 auto; display:flex; flex-direction:column; align-items:center;">
       <div class="footer-logo">
@@ -95,56 +95,54 @@
 
   <script src="../JS/fahrzeugbestand.js"></script>
   <script>
-    // --------- Header + Login Logik wie auf den anderen Seiten ----------
     function getRedirectParam() {
       return encodeURIComponent(window.location.pathname.replace(/^.*\//, '') + window.location.search);
     }
 
     function updateHeaderUser() {
-  const navCenter = document.getElementById("nav-center");
-  const userName = localStorage.getItem("userName");
+      const navCenter = document.getElementById("nav-center");
+      const userEmail = localStorage.getItem("userEmail");
 
-  if (userName) {
-    navCenter.innerHTML = `
-      <a href="startseite.html">Startseite</a>
-      <a href="#" class="active">Fahrzeugbestand</a>
-      <div class="dropdown-nav">
-        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="zulassung.html">Zulassungsservice</a>
-          <a href="ankauf.html">Ankauf Altfahrzeug</a>
-        </div>
-      </div>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
-      <a href="#" id="logout-link">Logout</a>
-    `;
-    document.getElementById("logout-link").onclick = (e) => {
-      e.preventDefault();
-      localStorage.removeItem("userName");
-      updateHeaderUser();
-    };
-  } else {
-    navCenter.innerHTML = `
-      <a href="startseite.html">Startseite</a>
-      <a href="#" class="active">Fahrzeugbestand</a>
-      <div class="dropdown-nav">
-        <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
-        <div class="dropdown-menu">
-          <a href="zulassung.html">Zulassungsservice</a>
-          <a href="ankauf.html">Ankauf Altfahrzeug</a>
-        </div>
-      </div>
-      <a href="kontakt.html">Kontakt</a>
-      <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
-    `;
-    document.getElementById("login-link").onclick = (e) => {
-      e.preventDefault();
-      document.getElementById("login-modal").style.display = "flex";
-    };
-  }
-}
-
+      if (userEmail) {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="#" class="active">Fahrzeugbestand</a>
+          <div class="dropdown-nav">
+            <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="zulassung.html">Zulassungsservice</a>
+              <a href="ankauf.html">Ankauf Altfahrzeug</a>
+            </div>
+          </div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="profil.html" id="profil-link"><i class="fas fa-user"></i> Profil ansehen</a>
+          <a href="#" id="logout-link">Logout</a>
+        `;
+        document.getElementById("logout-link").onclick = (e) => {
+          e.preventDefault();
+          localStorage.removeItem("userEmail");
+          updateHeaderUser();
+        };
+      } else {
+        navCenter.innerHTML = `
+          <a href="startseite.html">Startseite</a>
+          <a href="#" class="active">Fahrzeugbestand</a>
+          <div class="dropdown-nav">
+            <a href="#" class="dropdown-toggle" id="services-link">Services <i class="fas fa-caret-down"></i></a>
+            <div class="dropdown-menu">
+              <a href="zulassung.html">Zulassungsservice</a>
+              <a href="ankauf.html">Ankauf Altfahrzeug</a>
+            </div>
+          </div>
+          <a href="kontakt.html">Kontakt</a>
+          <a href="#" id="login-link"><i class="fas fa-user"></i> Login</a>
+        `;
+        document.getElementById("login-link").onclick = (e) => {
+          e.preventDefault();
+          document.getElementById("login-modal").style.display = "flex";
+        };
+      }
+    }
 
     // Modal schließen
     document.getElementById("close-login").onclick = () => {
@@ -168,13 +166,14 @@
           body: JSON.stringify({ email, passwort }),
         });
         const data = await res.json();
-        if (!res.ok || !data.success) {
+        if (!res.ok || !data.success || !data.user) {
           alert(data.message || "Login fehlgeschlagen!");
           return;
         }
-        localStorage.setItem("userName", data.name || data.firma || "Profil");
+        localStorage.setItem("userEmail", data.user.email);
         document.getElementById("login-modal").style.display = "none";
         updateHeaderUser();
+        window.location.reload();
       } catch (err) {
         alert("Serverfehler beim Login.");
       }
@@ -189,17 +188,16 @@
     document.addEventListener("DOMContentLoaded", updateHeaderUser);
 
     // Dropdown-Menü Services
-document.addEventListener('click', function(e) {
-  const dropdowns = document.querySelectorAll('.dropdown-nav');
-  dropdowns.forEach(dd => {
-    if (dd.contains(e.target)) {
-      dd.classList.toggle('open');
-    } else {
-      dd.classList.remove('open');
-    }
-  });
-});
-
+    document.addEventListener('click', function(e) {
+      const dropdowns = document.querySelectorAll('.dropdown-nav');
+      dropdowns.forEach(dd => {
+        if (dd.contains(e.target)) {
+          dd.classList.toggle('open');
+        } else {
+          dd.classList.remove('open');
+        }
+      });
+    });
   </script>
 </body>
 </html>

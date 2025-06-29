@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     const reserviertBis = new Date(wunschtermin);
     reserviertBis.setDate(reserviertBis.getDate() + 3);
 
-    // 2. Reservierung speichern (inkl. reserviert_bis)
+    // 2. Reservierung speichern (ohne nachricht)
     const { data: reservierung, error: insertError } = await db
       .from('reservierungen')
       .insert([{
