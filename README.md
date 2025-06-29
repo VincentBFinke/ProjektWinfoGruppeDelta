@@ -1,5 +1,4 @@
-# ProjektWinfoGruppeDelta
-====================
+# Vertrieb gebrauchter Mietfahrzeuge
 
  * [Einleitung](#einleitung)
  * [Installation](#installation)
