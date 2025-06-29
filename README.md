@@ -59,6 +59,10 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 #### Supabase Cloud‑Datenbank auf Basis von PostgreSQL
 - [Datenbank Schema](https://drive.google.com/file/d/1xiOuKCsT0W3P1VvIgjZp-cBFzYyRuYZv/view?usp=sharing)
 
+#### Link zum Trelloboard
+- [Trelloboard](https://trello.com/b/fUWZonRV/winfoprojekt-ss-2025-gruppe-delta-vertrieb-gebrauchter-fahrzeuge)
+
+
 
 ### Kontakt
 
