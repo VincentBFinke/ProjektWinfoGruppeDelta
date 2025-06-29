@@ -23,3 +23,6 @@ Dieses Repository befasst sich mit der Implementierung des Geschäftsanwendungsf
 - Berechnung von Finanzierung-/Leasingangebot ermöglichen
 - Zulassungsservice bereitstellen
 - Inzahlungnahme Altfahrzeug zur Verfügung stellen
+
+### Installation
+1. 
