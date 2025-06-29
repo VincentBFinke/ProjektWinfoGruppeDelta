@@ -3,6 +3,7 @@
  * [Einleitung](#einleitung)
  * [Installation](#installation)
  * [Dokumentation](#dokumentation)
+ * [Kontakt](#kontakt)
 
 ### Einleitung
 
