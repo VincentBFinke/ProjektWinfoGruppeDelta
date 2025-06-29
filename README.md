@@ -41,4 +41,13 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 #### Auftrag
 - [Projektauftrag](https://docs.google.com/document/d/1RJYmHdSS7uipclAmnLHuTl3D00bsDbuW/edit?usp=sharing&ouid=115149592471075868606&rtpof=true&sd=true)
 
+#### Protokolle
+- [Projektlogbuch](https://docs.google.com/document/d/1lckQGwNmpxYp5VJi59bl4Lx1EI_gwjuK_noElvqAvOE/edit?usp=sharing)
+- [DokumentationKI](https://drive.google.com/file/d/1qSPqgGoSndy8treM0wpK9PHJiPEsBfis/view?usp=sharing)
+- [Dokumentation von Testszenarien](https://drive.google.com/file/d/1seH8WRbJ6FO8YoRT2hE9C3R4qqp9PMdy/view?usp=sharing)
+- [Gantt-Diagramm](https://docs.google.com/spreadsheets/d/1jGHK-UEN9nJeG0R-hBegbMNlgJatOJsdK-O2wkysXik/edit?usp=sharing)
+- [Risikoreporting](https://drive.google.com/file/d/1DnpNrkLNoT-rb2wyDqRrvp-94K7XsBNZ/view?usp=sharing)
+- [Kostenreporting](https://drive.google.com/file/d/1Z6AQEMtNbe5_ZPVDgpHcg24NCrapMcL7/view?usp=sharing)
+
+
  
