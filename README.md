@@ -36,5 +36,9 @@ SUPABASE_SERVICE_ROLE_KEY, und noch Informationen die für den Emailverkehr wich
 8. Nachdem du zu dem richtigen Verzeichnis gewechselt hast kannst du folgenden Befehl eingeben: node server.js damit wird der Server gestartet. Im Terminal wirst du danach auch folgendes sehen: ✅ Mit Supabase API verbunden! Das bedeutet das die Verbindung zur Cloud-Datenbank erfolgreich war.
 9. Rufe nun im Browser deiner Wahl http://localhost:3000/HTML/startseite.html auf. Damit bist du bereit um unsere lokale Website zu testen. 
 
+### Dokumentation
+
+#### Auftrag
+- [Projektauftrag](https://docs.google.com/document/d/1RJYmHdSS7uipclAmnLHuTl3D00bsDbuW/edit?usp=sharing&ouid=115149592471075868606&rtpof=true&sd=true)
 
  
